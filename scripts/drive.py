@@ -1,7 +1,7 @@
 """Drive the pages in headless Chrome to produce web/recorded.json (and to run ad-hoc experiments).
 
     pip install playwright
-    python scripts/drive.py eval    [--variant q4e8] [--backend webgpu] [--s2 Qwen2.5-1.5B-Instruct-q4f16_1-MLC] [--subset all] [--out .cache/eval.json]
+    python scripts/drive.py eval    [--variant q4e8] [--backend webgpu] [--s2 Qwen2.5-1.5B-Instruct-q4f32_1-MLC] [--subset all] [--out .cache/eval.json]
     python scripts/drive.py presets [--variant q4e8] [--backend webgpu] [--s2 ...] [--out .cache/presets.json]
     python scripts/drive.py merge   --eval .cache/eval.json --presets .cache/presets.json     # -> web/recorded.json
     python scripts/drive.py js FILE.js [--page index.html] [--out result.json]                # FILE.js: an async function body, `return` a JSON value
@@ -73,7 +73,7 @@ def open_page(ctx, name):
 def launch(p):
     return p.chromium.launch_persistent_context(
         str(ROOT / ".cache" / "chrome-profile"), headless=True, executable_path=CHROME,
-        args=["--enable-unsafe-webgpu"], viewport={"width": 1440, "height": 960},
+        args=["--enable-unsafe-webgpu", "--disable-background-timer-throttling", "--disable-renderer-backgrounding", "--disable-backgrounding-occluded-windows"], viewport={"width": 1440, "height": 960},
     )
 
 

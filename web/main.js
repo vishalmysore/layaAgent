@@ -125,7 +125,7 @@ async function run({ goal, prefix, force, forcedAt } = {}) {
   S.running = true; S.abort = new AbortController(); setBusy(true);
   S.forcedAt = forcedAt ?? null;
   const current = { goal, steps: [], outcome: null, source: "live", live: true };
-  S.current = current; S.runs.push(current); S.sel = null;
+  S.current = current; S.runs.push(current); resetInspector(); renderAll(true);
   $("runHint").textContent = force ? `What-if: replaying from step ${forcedAt + 1} with ${force.action}…` : "Running…";
   try {
     await loadNlp();
@@ -144,7 +144,7 @@ async function run({ goal, prefix, force, forcedAt } = {}) {
 async function playback(rec) {
   S.running = true; setBusy(true);
   const current = { ...rec, steps: [], outcome: null, source: "recorded" };
-  S.current = current; S.runs.push(current); S.sel = null; S.forcedAt = null;
+  S.current = current; S.runs.push(current); resetInspector(); renderAll(true); S.forcedAt = null;
   $("runHint").textContent = "Replaying a run recorded from the same models (load System 1 to run it live).";
   for (const s of rec.steps) {
     if (!S.running) break;
@@ -153,6 +153,11 @@ async function playback(rec) {
   }
   current.outcome = rec.outcome; current.totalMs = rec.totalMs;
   S.running = false; setBusy(false); renderAll(true);
+}
+
+function resetInspector() {
+  S.sel = null;
+  $("inspector").innerHTML = `<p class="hint">Click a node: the typed questions Laya answered, every option's probability, the gate's reasons and, for held steps, System 2's prompt and reply. Dashed diamonds are the next actions Laya considered; click one to replay the run from there.</p>`;
 }
 
 function setBusy(b) { $("runBtn").disabled = b; $("stopBtn").disabled = !b; }
@@ -236,9 +241,9 @@ function renderSteps() {
 }
 
 function renderTraceGraph() {
-  $("traceEmpty").hidden = !!S.current?.steps.length;
-  if (!S.current?.steps.length) return;
-  S.cy?.destroy();
+  $("traceEmpty").hidden = !!S.current;
+  S.cy?.destroy(); S.cy = null;
+  if (!S.current) return;
   S.cy = renderTrace($("traceCanvas"), S.current, { reroute: reroute(S.current, gateOpts()), forcedAt: S.forcedAt }, (kind, step, data) => {
     if (kind === "alt") { if (confirm(`Replay from step ${step + 1} with ${data.alt}? (runs System 1 again from there)`)) whatIf(step, data.alt); return; }
     S.sel = { kind, step, data }; renderInspector(kind, step, data); renderSteps();

@@ -145,11 +145,11 @@ Then open http://localhost:8000. `serve.py` sends the COOP/COEP headers so ONNX 
 A unit test fails when the question wording, the tool registry or the suite changes, because the recording carries a fingerprint of them. To refresh it (needs Chrome and `pip install playwright`), start `python serve.py 5193`, then:
 
 ```bash
-python scripts/drive.py eval --variant q4e8 --backend webgpu --s2 Qwen2.5-1.5B-Instruct-q4f16_1-MLC --out .cache/eval.json
+python scripts/drive.py eval --variant q4e8 --backend webgpu --s2 Qwen2.5-1.5B-Instruct-q4f32_1-MLC --out .cache/eval.json
 ```
 
 ```bash
-python scripts/drive.py presets --variant q4e8 --backend webgpu --s2 Qwen2.5-1.5B-Instruct-q4f16_1-MLC --out .cache/presets.json
+python scripts/drive.py presets --variant q4e8 --backend webgpu --s2 Qwen2.5-1.5B-Instruct-q4f32_1-MLC --out .cache/presets.json
 ```
 
 ```bash
