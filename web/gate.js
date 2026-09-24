@@ -13,8 +13,8 @@ export const METRICS = { prob: "p(chosen option)", margin: "margin over the runn
 
 export const DEFAULTS = {
   metric: "prob",
-  tauAction: 0.3,     // gate score needed on the action question
-  tauArg: 0.5,        // gate score needed on every argument question
+  tauAction: 0.65,    // gate score needed on the action question (chosen on the dev split: auto-step error <= 10%)
+  tauArg: 0.65,       // gate score needed on every argument question (same)
   goalCutoff: 0.5,    // p(goal met) at which FINISH is proposed
   tauStop: 0.7,       // p(goal met) needed to FINISH without asking (it is weak on multi-hop goals: see README)
   riskCutoff: 0.2,    // p(risky) at which a read-only proposal is held (fail closed); chosen on the dev split

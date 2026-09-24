@@ -51,7 +51,7 @@ function initGate() {
   };
   for (const id of ["tauAction", "tauArg", "tauStop"]) $(id).addEventListener("input", upd);
   for (const id of ["metric", "useGoalMet", "useRisk", "maxSteps"]) $(id).addEventListener("change", upd);
-  for (const id of ["autoS2", "shadow", "rewrite"]) { $(id).checked = settings.get(id, id === "autoS2"); $(id).addEventListener("change", () => settings.set(id, $(id).checked)); }
+  for (const id of ["autoS2", "shadow", "rewrite"]) { $(id).checked = settings.get(id, false); $(id).addEventListener("change", () => settings.set(id, $(id).checked)); }
 }
 
 // ---- dialogs: you as the fallback decider, the guard, ask_user ---------------------------------------------------
@@ -319,14 +319,14 @@ globalThis.__la = {
       const task = S.tasks.tasks.find((t) => t.goal === goal);
       const gold = task?.steps || [];
       const deps = liveDeps({
-        toolCtx: { notes: memoryNotes(S.tasks.seedNotes), askUser: async () => gold.find((g) => g.action === "ask_user")?.observation.match(/"(.*)"/)?.[1] || null, now: undefined },
+        toolCtx: { notes: memoryNotes(S.tasks.seedNotes), askUser: async () => gold.find((g) => g.action === "ask_user")?.observation.match(/"(.*)"/)?.[1] || `I mean: ${goal}`, now: undefined },
         human: {
           decide: async ({ state }) => { const g = gold[state.steps_done.length]; return g ? { action: g.action, args: Object.fromEntries(Object.entries(g.args).map(([k, v]) => [k, Array.isArray(v) ? v[0] : v])) } : null; },
           confirm: async () => true,
         },
       });
       const res = await runAgent(goal, deps, { ...gateOpts(), shadowRate: 0 });
-      res.recordedWith = { s1: M.info?.variant, backend: M.info?.backend, s2: M.s2?.model || null, humanStandIn: "gold trace" };
+      res.recordedWith = { s1: M.info?.variant, backend: M.info?.backend, s2: M.s2?.model || null, humanStandIn: "gold trace for held steps; confirmations allowed; ask_user answered from the gold trace or by restating the goal" };
       out[goal] = { ...compactRun(res), recordedWith: res.recordedWith };
       console.log("recorded", goal, res.outcome);
     }

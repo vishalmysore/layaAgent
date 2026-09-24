@@ -43,7 +43,8 @@ export function validateDecision(d) {
 
 /** Compose the final answer from the tool results (templates, not a model). */
 export function composeAnswer(steps) {
-  const done = steps.filter((s) => s.action !== FINISH && s.result && s.result.ok !== false && s.result.answer);
+  // the user's own reply to ask_user is context, not an answer
+  const done = steps.filter((s) => s.action !== FINISH && s.action !== "ask_user" && s.result && s.result.ok !== false && s.result.answer);
   if (!done.length) return { text: "I could not find an answer.", sources: [] };
   const last = done.at(-1);
   const sources = [...new Set(done.map((s) => s.result.source).filter(Boolean))];
@@ -123,6 +124,13 @@ export async function runAgent(goal, deps, opts = {}) {
       decision = h; rec.decidedBy = "human";
     }
     rec.action = decision.action; rec.args = decision.args || {};
+    // loop guard for every decider: an identical repeat of the previous call is never run; the agent finishes with
+    // what it already found (small LLMs in particular re-issue the call that just answered the goal)
+    if (prev && rec.action !== FINISH && rec.action === prev.action && sameArgs(rec.args, prev.args)) {
+      rec.repeatOf = { action: rec.action, args: rec.args };
+      rec.reasons = [...rec.reasons, `${rec.decidedBy} repeated the previous call, so the agent finished with what it found`];
+      rec.action = FINISH; rec.args = {};
+    }
 
     // ---- guard: anything that changes state needs the user's OK
     const gd = guard(rec.action);

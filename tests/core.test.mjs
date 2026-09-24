@@ -206,6 +206,16 @@ test("agent: what-if replay reuses the prefix and forces the action", async () =
   assert.match(toTurtle(compactRun(first)), /la:decidedBy la:S1/);
 });
 
+test("agent: a repeated identical call is not run again; the agent finishes", async () => {
+  const script = [{ action: "calculator", p: 0.2, args: { expression: ["18% of 2,450", 0.95] } }, { action: "calculator", p: 0.2, args: { expression: ["18% of 2,450", 0.95] } }];
+  const s2 = { ready: () => true, decide: async () => ({ action: "calculator", args: { expression: "18% of 2,450" }, reason: "", ms: 1 }) };
+  const run = await runAgent("What's 18% of 2,450?", { laya: mockLaya(script), nlp, s2, human: { decide: async () => null, confirm: async () => true }, toolCtx: fakeTools });
+  assert.equal(run.steps.length, 2);
+  assert.equal(run.steps[1].action, "FINISH");
+  assert.ok(run.steps[1].repeatOf);
+  assert.match(run.outcome.text, /441/);
+});
+
 // ---- gold matching and metrics ----------------------------------------------------------------------------------------
 test("gold: alternatives, numeric expressions, quantities", () => {
   assert.ok(argMatch("expression", "0.18 * 2450", "18% of 2,450"));

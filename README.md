@@ -7,6 +7,47 @@ No server, no API key. The tools call Wikipedia, Wikidata and Open-Meteo straigh
 **Live demo:** https://vishalmysore.github.io/layaAgent/ · Design spec: [`layaAgent.md`](layaAgent.md). Fourth in the series layaForWeb (the model) → [layaForWorkflows](https://github.com/vishalmysore/layaForWorkflows) (decisions as a graph) → [layaAsRagJudge](https://github.com/vishalmysore/layaAsRagJudge) (decisions as a judge) → **layaAgent (decisions as an agent)**.
 
 
+## Results (test split: 71 tasks, 158 steps)
+
+Recorded on a laptop with an Intel Iris Xe iGPU: Laya int4 on WebGPU, System 2 = Qwen2.5-1.5B-Instruct (q4f32) through WebLLM. The gate thresholds were chosen on the 36-task dev split (largest System 1 share with auto-step error ≤ 10%) and then frozen.
+
+| Router | Task success | System 2 / person calls | Median time per task |
+|---|---|---|---|
+| System 1 only (Laya, no gate) | 32% | 0 | 9.7 s |
+| **Laya + a person on held steps** (gate τ = 0.65) | **94%** | 68% of steps to you | – |
+| Laya + System 2 on held steps (gate τ = 0.65) | 21% | 107 of 158 steps | 30.8 s |
+| System 2 only (Qwen2.5-1.5B every step) | 10% | 158 of 158 | 35.3 s |
+
+At the dev-tuned gate, **Laya decides 32% of steps on its own with a 9.8% error rate**; the rest are held. Lower the bar and Laya takes more, less safely:
+
+| Gate τ | Steps Laya decides alone | Those steps right |
+|---|---|---|
+| 0.30 | 56% | 67% |
+| 0.50 | 42% | 83% |
+| **0.65** (dev-tuned) | **32%** | **90%** |
+| 0.80 | 27% | 93% |
+
+What the parts do (test split):
+
+| Part | Result |
+|---|---|
+| Action (Laya's top tool, first steps and continuations) | 30%; 68% counting its goal-met stop |
+| Arguments by choice (all slots) | 71% (spans 62%, fixed lists 90%) |
+| Candidate extractor recall (gold span offered) | 91% |
+| Picks NONE when the right value is not in the text | 25% |
+| Risk flag: goals that change something | AUROC 0.90; at 0.2: catches 65%, 5% false alarms |
+| goal_met: "is the goal answered?" | AUROC 0.71 |
+| Latency per step, p50 (Laya, all questions / Qwen) | 5.2 s / 18.4 s |
+
+What these numbers say:
+
+- **The 421M encoder beats the 1.5B LLM at this job.** Picking a tool and its arguments from options is what Laya was trained for; the small generative model mostly re-looks things up, prefers Wikipedia for every fact and rarely stops. Handing held steps to it *lowers* task success below Laya alone.
+- **The gate is honest.** Automatic steps at the tuned threshold are right 90% of the time on unseen tasks; everything else is visibly held, with its reason. With a person as the fallback, 94% of tasks finish correctly.
+- **Laya is strong on single-tool goals** (weather, arithmetic, units, dates, memory) and **weak where an agent needs state**: continuing multi-hop chains and knowing when it is done. It also never learned to prefer Wikidata over Wikipedia for facts.
+- **The guard does not depend on the model:** every side-effect tool asks, and on top of that Laya's risk reading holds suspicious read-only steps.
+
+Caveats: 107 synthetic goals is a smoke test, not a benchmark. Latencies are from one integrated GPU. System 2's answers were recorded in a second pass over the same steps, after the first pass exposed that the q4f16 WebLLM builds produce degenerate output on this GPU (see `web/system2.js`); System 1's answers are from the first pass (its questions did not change).
+
 ## How a step works
 
 ```
@@ -31,12 +72,14 @@ A step is **held** when any of these is true (all thresholds live on sliders, an
 
 | Rule | Why |
 |---|---|
-| p(chosen tool) < τ_action | Laya is unsure which tool |
-| p(chosen span) < τ_arg for any argument, or any argument is NONE | unsure, or the value is not in the text |
-| a FINISH with p(goal met) < τ_stop | Laya's stop signal is weak on multi-hop goals (see results) |
+| p(chosen tool) < τ_action (0.65) | Laya is unsure which tool |
+| p(chosen span) < τ_arg (0.65) for any argument, or any argument is NONE | unsure, or the value is not in the text |
+| a FINISH with p(goal met) < τ_stop (0.7) | Laya's stop signal is weak on multi-hop goals (see results) |
 | same tool as the previous step | Laya tends to repeat its last tool; the loop guard also catches identical calls |
 | the goal reads as risky (p ≥ 0.2, chosen on dev) but the chosen tool is read-only | fail closed: "delete my notes" should not quietly become a search |
 | step budget reached | stops runaway loops |
+
+One more rule applies after the decision, to every decider: an identical repeat of the previous call is never run, and the agent finishes with what it found. Qwen2.5-1.5B in particular re-issues the call that just answered the goal.
 
 **Gate score.** Laya's native confidence is 1 − normalized entropy, but this checkpoint's probabilities are compressed (seen in layaForWorkflows and layaAsRagJudge): a 12-option question reads 0.1–0.3 even when right. The default score is therefore the probability of the chosen option; margin and entropy are selectable.
 
