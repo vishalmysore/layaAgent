@@ -137,14 +137,14 @@
           <div class="tools"><button id="fitBtn" class="ghost">Fit</button></div>
         </div>
         <div class="split">
-          <div class="canvas" id="traceCanvas"><div class="empty" id="traceEmpty">Pick a preset goal or write your own, then press <b>Run agent</b>.</div></div>
+          <div class="canvas"><div class="cyhost" id="traceCanvas"></div><div class="empty" id="traceEmpty">Pick a preset goal or write your own, then press <b>Run agent</b>.</div></div>
           <div class="inspector" id="inspector"><p class="hint">Click a node: the typed questions Laya answered, every option's probability, the gate's reasons and, for held steps, System 2's prompt and reply. Dashed diamonds are the next actions Laya considered; click one to replay the run from there.</p></div>
         </div>
       </div>
       <div class="panel" data-panel="steps" hidden><ol class="steplist" id="stepList"></ol></div>
       <div class="panel" data-panel="session" hidden>
         <p class="caption" style="margin-bottom:8px">Every run in this tab (recorded playbacks included), merged: edges are counted transitions, the amber halo marks tools where steps were often held for System 2 or you.</p>
-        <div class="canvas" id="sessionCanvas"><div class="empty" id="sessionEmpty">No runs yet.</div></div>
+        <div class="canvas"><div class="cyhost" id="sessionCanvas"></div><div class="empty" id="sessionEmpty">No runs yet.</div></div>
       </div>
       <div class="panel" data-panel="export" hidden>
         <p class="hint">The current run as JSON (every step with Laya's answers) or as RDF Turtle (a <code>la:Run</code> with <code>la:Step</code>s and a <code>la:decidedBy</code> for each), to query elsewhere with SPARQL.</p>
