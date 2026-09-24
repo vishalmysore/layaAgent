@@ -158,7 +158,7 @@ const TASKS = [
 ];
 
 // Wikipedia and Wikidata ask API clients to identify themselves.
-const UA = { "User-Agent": "layaAgent-task-builder/0.1 (https://github.com/vishalmysore/layaAsAgenticGaurd)" };
+const UA = { "User-Agent": "layaAgent-task-builder/0.1 (https://github.com/vishalmysore/layaAgent)" };
 async function nodeFetch(url, init = {}) {
   for (let attempt = 1; ; attempt++) {
     try {

@@ -43,7 +43,7 @@ const num = (x) => `"${Number(x).toFixed(4)}"^^xsd:decimal`;
 
 /** A run as Turtle: la:Run with la:Step nodes, each with who decided, the action, arguments and S1's probabilities. */
 export function toTurtle(run, id = "run1") {
-  const L = ["@prefix la: <https://vishalmysore.github.io/layaAsAgenticGaurd/ontology#> .", "@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .", "@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .", ""];
+  const L = ["@prefix la: <https://vishalmysore.github.io/layaAgent/ontology#> .", "@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .", "@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .", ""];
   L.push(`la:${id} a la:Run ;`, `  la:goal ${lit(run.goal)} ;`, `  la:outcome ${lit(run.outcome?.kind)} ;`, `  la:answer ${lit(run.outcome?.text)} ;`);
   L.push(`  la:hasStep ${run.steps.map((s) => `la:${id}_s${s.index}`).join(", ")} .`, "");
   for (const s of run.steps) {

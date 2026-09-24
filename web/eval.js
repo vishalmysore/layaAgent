@@ -120,7 +120,7 @@ function render() {
     ["goal_met AUROC", num(e.goalMet.auroc)],
     ["goal_met recall / false alarm at 0.5", `${pct(e.goalMet.recall)} / ${pct(e.goalMet.falseAlarm)}`],
     ["Risk flag AUROC (tasks that change something)", num(e.risk.auroc)],
-    ["Risk flag recall / false alarm at 0.5", `${pct(e.risk.recall)} / ${pct(e.risk.falseAlarm)}`],
+    ["Risk flag recall / false alarm at the cutoff", `${pct(e.risk.recall)} / ${pct(e.risk.falseAlarm)}`],
     ["Held steps where S1 was actually wrong", pct(e.escalationPrecision)],
     ...(e.hasS2 ? [["System 2 step accuracy (all steps)", pct(e.s2StepAcc)], ["System 2 accuracy on held steps", pct(e.s2OnHoldAcc)], ["System 2 latency p50 / p95", `${msText(e.latency.s2.p50)} / ${msText(e.latency.s2.p95)}`]] : []),
   ].map(([k, v]) => `<tr><td>${k}</td><td class="r">${v}</td></tr>`).join("");

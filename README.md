@@ -4,9 +4,8 @@
 
 No server, no API key. The tools call Wikipedia, Wikidata and Open-Meteo straight from your browser; nothing else leaves the page, and messages are simulated, never sent.
 
-Repository: `layaAsAgenticGaurd`. Design spec: [`layaAgent.md`](layaAgent.md). Fourth in the series layaForWeb (the model) → [layaForWorkflows](https://github.com/vishalmysore/layaForWorkflows) (decisions as a graph) → [layaAsRagJudge](https://github.com/vishalmysore/layaAsRagJudge) (decisions as a judge) → **layaAgent (decisions as an agent)**.
+**Live demo:** https://vishalmysore.github.io/layaAgent/ · Design spec: [`layaAgent.md`](layaAgent.md). Fourth in the series layaForWeb (the model) → [layaForWorkflows](https://github.com/vishalmysore/layaForWorkflows) (decisions as a graph) → [layaAsRagJudge](https://github.com/vishalmysore/layaAsRagJudge) (decisions as a judge) → **layaAgent (decisions as an agent)**.
 
-__RESULTS__
 
 ## How a step works
 
@@ -18,7 +17,7 @@ goal ──► state { goal, steps_done (last 4, one line each), last_observatio
          (no model)                nouns, dates, durations, quantities, arithmetic, clauses to save or send
      ──► System 1 argument pass    one choice question per slot: the candidate spans + NONE, or a fixed list
      ──► gate                      AUTO: System 1's step runs
-                                   HOLD: System 2 decides (JSON-schema constrained, same action space),
+                                   HOLD: System 2 decides (a JSON step checked against the same registry),
                                          or you do when System 2 is not loaded / no WebGPU
      ──► guard                     tools that change something always ask you first, whoever picked them
      ──► tool ──► observation ──► next step        FINISH composes the answer from tool results (templates)
@@ -36,7 +35,7 @@ A step is **held** when any of these is true (all thresholds live on sliders, an
 | p(chosen span) < τ_arg for any argument, or any argument is NONE | unsure, or the value is not in the text |
 | a FINISH with p(goal met) < τ_stop | Laya's stop signal is weak on multi-hop goals (see results) |
 | same tool as the previous step | Laya tends to repeat its last tool; the loop guard also catches identical calls |
-| the goal reads as risky (p ≥ 0.5) but the chosen tool is read-only | fail closed: "delete my notes" should not quietly become a search |
+| the goal reads as risky (p ≥ 0.2, chosen on dev) but the chosen tool is read-only | fail closed: "delete my notes" should not quietly become a search |
 | step budget reached | stops runaway loops |
 
 **Gate score.** Laya's native confidence is 1 − normalized entropy, but this checkpoint's probabilities are compressed (seen in layaForWorkflows and layaAsRagJudge): a 12-option question reads 0.1–0.3 even when right. The default score is therefore the probability of the chosen option; margin and entropy are selectable.

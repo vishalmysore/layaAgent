@@ -17,7 +17,7 @@ export const DEFAULTS = {
   tauArg: 0.5,        // gate score needed on every argument question
   goalCutoff: 0.5,    // p(goal met) at which FINISH is proposed
   tauStop: 0.7,       // p(goal met) needed to FINISH without asking (it is weak on multi-hop goals: see README)
-  riskCutoff: 0.5,    // p(risky) at which a read-only proposal is held (fail closed)
+  riskCutoff: 0.2,    // p(risky) at which a read-only proposal is held (fail closed); chosen on the dev split
   useGoalMet: true,   // after the first step, p(goal met) >= goalCutoff means FINISH
   strictGoalMet: false, // also hold when goal_met and next_action disagree
   useRisk: true,

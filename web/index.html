@@ -96,7 +96,7 @@
         <div class="field" style="margin-top:8px"><label for="metric">Score</label><select id="metric"></select></div>
         <div class="toggles">
           <label class="check"><input type="checkbox" id="useGoalMet"> Stop when Laya says the goal is met (p ≥ 0.5); hold if it disagrees with its own next action</label>
-          <label class="check"><input type="checkbox" id="useRisk"> Hold read-only steps when Laya reads the goal as risky (p ≥ 0.5)</label>
+          <label class="check"><input type="checkbox" id="useRisk"> Hold read-only steps when Laya reads the goal as risky (p ≥ 0.2, chosen on dev)</label>
         </div>
         <div class="field"><label for="maxSteps">Step budget</label><select id="maxSteps"><option>4</option><option>6</option><option selected>8</option><option>12</option></select></div>
         <p class="hint">Tools that change something (save or delete notes, send a message) always ask you first, whoever picked them.</p>

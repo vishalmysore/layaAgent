@@ -1,6 +1,6 @@
 # Notice
 
-layaAgent (repository `layaAsAgenticGaurd`) is an unofficial project built on a browser port of the Laya typed-decisions checkpoint. It is not affiliated with or endorsed by ConvAI Innovations, Microsoft, Hugging Face, Answer.AI, LightOn, the MLC team, Alibaba (Qwen), Meta (Llama), the Wikimedia Foundation, Open-Meteo or the Cytoscape Consortium.
+layaAgent is an unofficial project built on a browser port of the Laya typed-decisions checkpoint. It is not affiliated with or endorsed by ConvAI Innovations, Microsoft, Hugging Face, Answer.AI, LightOn, the MLC team, Alibaba (Qwen), Meta (Llama), the Wikimedia Foundation, Open-Meteo or the Cytoscape Consortium.
 
 ## This project
 
