@@ -1,0 +1,6 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    { "name": "layaagent", "runtimeExecutable": "python", "runtimeArgs": ["serve.py", "5193"], "port": 5193 }
+  ]
+}

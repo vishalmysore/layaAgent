@@ -1,0 +1,2840 @@
+{
+ "version": 1,
+ "recordedAt": "2026-09-24T12:00:00Z",
+ "seedNotes": [
+  "My book club meets on Thursdays at 7pm",
+  "Dentist appointment on October 3 at 9am",
+  "The cabin wifi password is taped to the fridge",
+  "Sam's birthday is June 12",
+  "Gym locker code is 4417",
+  "Car wash coupon expires at the end of the month",
+  "Parking spot at work is B-14"
+ ],
+ "note": "Synthetic goals with gold traces. Observations were recorded from the real tools (Wikipedia, Wikidata, Open-Meteo) at recordedAt, so scores do not move when those sources change.",
+ "tasks": [
+  {
+   "id": "t001",
+   "split": "dev",
+   "category": "weather",
+   "goal": "Weather in Lisbon tomorrow",
+   "steps": [
+    {
+     "action": "weather",
+     "args": {
+      "place": "Lisbon",
+      "when": "tomorrow"
+     },
+     "observation": "Forecast for Lisbon, Lisbon District, Portugal (tomorrow): Fri 09-25: overcast, 18–29°C, rain chance 0%",
+     "answer": "Forecast for Lisbon, Lisbon District, Portugal (tomorrow): Fri 09-25: overcast, 18–29°C, rain chance 0%",
+     "source": "https://open-meteo.com/"
+    },
+    {
+     "action": "FINISH",
+     "args": {},
+     "observation": ""
+    }
+   ],
+   "answer": "Forecast for Lisbon, Lisbon District, Portugal (tomorrow): Fri 09-25: overcast, 18–29°C, rain chance 0%"
+  },
+  {
+   "id": "t002",
+   "split": "test",
+   "category": "weather",
+   "goal": "What's the forecast for Oslo today?",
+   "steps": [
+    {
+     "action": "weather",
+     "args": {
+      "place": "Oslo",
+      "when": "today"
+     },
+     "observation": "Forecast for Oslo, Norway (today): Thu 09-24: rain, 11–16°C, rain chance 100%",
+     "answer": "Forecast for Oslo, Norway (today): Thu 09-24: rain, 11–16°C, rain chance 100%",
+     "source": "https://open-meteo.com/"
+    },
+    {
+     "action": "FINISH",
+     "args": {},
+     "observation": ""
+    }
+   ],
+   "answer": "Forecast for Oslo, Norway (today): Thu 09-24: rain, 11–16°C, rain chance 100%"
+  },
+  {
+   "id": "t003",
+   "split": "test",
+   "category": "weather",
+   "goal": "Will it rain in Dublin this weekend?",
+   "steps": [
+    {
+     "action": "weather",
+     "args": {
+      "place": "Dublin",
+      "when": "weekend"
+     },
+     "observation": "Forecast for Dublin, Leinster, Ireland (this weekend (Saturday and Sunday)): Sat 09-26: overcast, 14–19°C, rain chance 22%; Sun 09-27: light rain, 13–17°C, rain chance 76%",
+     "answer": "Forecast for Dublin, Leinster, Ireland (this weekend (Saturday and Sunday)): Sat 09-26: overcast, 14–19°C, rain chance 22%; Sun 09-27: light rain, 13–17°C, rain chance 76%",
+     "source": "https://open-meteo.com/"
+    },
+    {
+     "action": "FINISH",
+     "args": {},
+     "observation": ""
+    }
+   ],
+   "answer": "Forecast for Dublin, Leinster, Ireland (this weekend (Saturday and Sunday)): Sat 09-26: overcast, 14–19°C, rain chance 22%; Sun 09-27: light rain, 13–17°C, rain chance 76%"
+  },
+  {
+   "id": "t004",
+   "split": "dev",
+   "category": "weather",
+   "goal": "How warm will it be in Nairobi tomorrow?",
+   "steps": [
+    {
+     "action": "weather",
+     "args": {
+      "place": "Nairobi",
+      "when": "tomorrow"
+     },
+     "observation": "Forecast for Nairobi, Nairobi County, Kenya (tomorrow): Fri 09-25: overcast, 13–28°C, rain chance 12%",
+     "answer": "Forecast for Nairobi, Nairobi County, Kenya (tomorrow): Fri 09-25: overcast, 13–28°C, rain chance 12%",
+     "source": "https://open-meteo.com/"
+    },
+    {
+     "action": "FINISH",
+     "args": {},
+     "observation": ""
+    }
+   ],
+   "answer": "Forecast for Nairobi, Nairobi County, Kenya (tomorrow): Fri 09-25: overcast, 13–28°C, rain chance 12%"
+  },
+  {
+   "id": "t005",
+   "split": "test",
+   "category": "weather",
+   "goal": "Weather in Toronto for the next few days",
+   "steps": [
+    {
+     "action": "weather",
+     "args": {
+      "place": "Toronto",
+      "when": "week"
+     },
+     "observation": "Forecast for Toronto, Ontario, Canada (the next few days): Thu 09-24: mostly clear, 9–18°C, rain chance 0%; Fri 09-25: overcast, 8–21°C, rain chance 0%; Sat 09-26: overcast, 10–23°C, rain chance 0%",
+     "answer": "Forecast for Toronto, Ontario, Canada (the next few days): Thu 09-24: mostly clear, 9–18°C, rain chance 0%; Fri 09-25: overcast, 8–21°C, rain chance 0%; Sat 09-26: overcast, 10–23°C, rain chance 0%",
+     "source": "https://open-meteo.com/"
+    },
+    {
+     "action": "FINISH",
+     "args": {},
+     "observation": ""
+    }
+   ],
+   "answer": "Forecast for Toronto, Ontario, Canada (the next few days): Thu 09-24: mostly clear, 9–18°C, rain chance 0%; Fri 09-25: overcast, 8–21°C, rain chance 0%; Sat 09-26: overcast, 10–23°C, rain chance 0%"
+  },
+  {
+   "id": "t006",
+   "split": "test",
+   "category": "weather",
+   "goal": "Do I need an umbrella in Singapore today?",
+   "steps": [
+    {
+     "action": "weather",
+     "args": {
+      "place": "Singapore",
+      "when": "today"
+     },
+     "observation": "Forecast for Singapore (today): Fri 09-25: heavy drizzle, 26–33°C, rain chance 73%",
+     "answer": "Forecast for Singapore (today): Fri 09-25: heavy drizzle, 26–33°C, rain chance 73%",
+     "source": "https://open-meteo.com/"
+    },
+    {
+     "action": "FINISH",
+     "args": {},
+     "observation": ""
+    }
+   ],
+   "answer": "Forecast for Singapore (today): Fri 09-25: heavy drizzle, 26–33°C, rain chance 73%"
+  },
+  {
+   "id": "t007",
+   "split": "dev",
+   "category": "weather",
+   "goal": "What will the weather be like in Kraków this weekend?",
+   "steps": [
+    {
+     "action": "weather",
+     "args": {
+      "place": "Kraków",
+      "when": "weekend"
+     },
+     "observation": "Forecast for Krakow, Lesser Poland, Poland (this weekend (Saturday and Sunday)): Sat 09-26: overcast, 10–19°C, rain chance 0%; Sun 09-27: overcast, 8–19°C, rain chance 0%",
+     "answer": "Forecast for Krakow, Lesser Poland, Poland (this weekend (Saturday and Sunday)): Sat 09-26: overcast, 10–19°C, rain chance 0%; Sun 09-27: overcast, 8–19°C, rain chance 0%",
+     "source": "https://open-meteo.com/"
+    },
+    {
+     "action": "FINISH",
+     "args": {},
+     "observation": ""
+    }
+   ],
+   "answer": "Forecast for Krakow, Lesser Poland, Poland (this weekend (Saturday and Sunday)): Sat 09-26: overcast, 10–19°C, rain chance 0%; Sun 09-27: overcast, 8–19°C, rain chance 0%"
+  },
+  {
+   "id": "t008",
+   "split": "test",
+   "category": "weather",
+   "goal": "Forecast for Buenos Aires tomorrow please",
+   "steps": [
+    {
+     "action": "weather",
+     "args": {
+      "place": "Buenos Aires",
+      "when": "tomorrow"
+     },
+     "observation": "Forecast for Buenos Aires, Buenos Aires F.D., Argentina (tomorrow): Fri 09-25: overcast, 15–25°C, rain chance 8%",
+     "answer": "Forecast for Buenos Aires, Buenos Aires F.D., Argentina (tomorrow): Fri 09-25: overcast, 15–25°C, rain chance 8%",
+     "source": "https://open-meteo.com/"
+    },
+    {
+     "action": "FINISH",
+     "args": {},
+     "observation": ""
+    }
+   ],
+   "answer": "Forecast for Buenos Aires, Buenos Aires F.D., Argentina (tomorrow): Fri 09-25: overcast, 15–25°C, rain chance 8%"
+  },
+  {
+   "id": "t009",
+   "split": "test",
+   "category": "weather",
+   "goal": "Is it going to be sunny in Seoul today?",
+   "steps": [
+    {
+     "action": "weather",
+     "args": {
+      "place": "Seoul",
+      "when": "today"
+     },
+     "observation": "Forecast for Seoul, South Korea (today): Fri 09-25: overcast, 18–24°C, rain chance 57%",
+     "answer": "Forecast for Seoul, South Korea (today): Fri 09-25: overcast, 18–24°C, rain chance 57%",
+     "source": "https://open-meteo.com/"
+    },
+    {
+     "action": "FINISH",
+     "args": {},
+     "observation": ""
+    }
+   ],
+   "answer": "Forecast for Seoul, South Korea (today): Fri 09-25: overcast, 18–24°C, rain chance 57%"
+  },
+  {
+   "id": "t010",
+   "split": "dev",
+   "category": "weather",
+   "goal": "Weather in Cape Town over the next few days",
+   "steps": [
+    {
+     "action": "weather",
+     "args": {
+      "place": "Cape Town",
+      "when": "week"
+     },
+     "observation": "Forecast for Cape Town, Western Cape, South Africa (the next few days): Thu 09-24: overcast, 15–21°C, rain chance 4%; Fri 09-25: light drizzle, 14–20°C, rain chance 45%; Sat 09-26: heavy drizzle, 15–19°C, rain chance 41%",
+     "answer": "Forecast for Cape Town, Western Cape, South Africa (the next few days): Thu 09-24: overcast, 15–21°C, rain chance 4%; Fri 09-25: light drizzle, 14–20°C, rain chance 45%; Sat 09-26: heavy drizzle, 15–19°C, rain chance 41%",
+     "source": "https://open-meteo.com/"
+    },
+    {
+     "action": "FINISH",
+     "args": {},
+     "observation": ""
+    }
+   ],
+   "answer": "Forecast for Cape Town, Western Cape, South Africa (the next few days): Thu 09-24: overcast, 15–21°C, rain chance 4%; Fri 09-25: light drizzle, 14–20°C, rain chance 45%; Sat 09-26: heavy drizzle, 15–19°C, rain chance 41%"
+  },
+  {
+   "id": "t011",
+   "split": "test",
+   "category": "wiki",
+   "goal": "Tell me about Marie Curie",
+   "steps": [
+    {
+     "action": "wiki_lookup",
+     "args": {
+      "topic": "Marie Curie"
+     },
+     "observation": "Marie Curie (Polish-French physicist and chemist (1867–1934)): Maria Salomea Skłodowska Curie, better known as Marie Curie, was a Polish and naturalised-French physicist and chemist. She shared the 1903 Nobel Prize in Physics with her husband, Pierre Curie, \"for their joint researches on the radioactivity phenomena discovered by Professor Henri Becquerel\". She won the 1911 Nobel Prize in Chemistry \"[for] the discovery of the elements radium and polonium, by the isolation of radium and the study of the nature and compounds of this remarkable element\".",
+     "answer": "Marie Curie: Maria Salomea Skłodowska Curie, better known as Marie Curie, was a Polish and naturalised-French physicist and chemist. She shared the 1903 Nobel Prize in Physics with her husband, Pierre Curie, \"for their joint researches on the radioactivity phenomena discovered by Professor Henri Becquerel\".",
+     "source": "https://en.wikipedia.org/wiki/Marie_Curie"
+    },
+    {
+     "action": "FINISH",
+     "args": {},
+     "observation": ""
+    }
+   ],
+   "answer": "Marie Curie: Maria Salomea Skłodowska Curie, better known as Marie Curie, was a Polish and naturalised-French physicist and chemist. She shared the 1903 Nobel Prize in Physics with her husband, Pierre Curie, \"for their joint researches on the radioactivity phenomena discovered by Professor Henri Becquerel\"."
+  },
+  {
+   "id": "t012",
+   "split": "test",
+   "category": "wiki",
+   "goal": "Who was Ada Lovelace?",
+   "steps": [
+    {
+     "action": "wiki_lookup",
+     "args": {
+      "topic": "Ada Lovelace"
+     },
+     "observation": "Ada Lovelace (English mathematician (1815–1852)): Augusta Ada King, Countess of Lovelace, also known as Ada Lovelace, was an English mathematician and writer chiefly known for work on Charles Babbage's proposed mechanical general-purpose computer, the analytical engine. She was the first to recognise the machine had applications beyond pure calculation. Lovelace is often considered the first computer programmer.",
+     "answer": "Ada Lovelace: Augusta Ada King, Countess of Lovelace, also known as Ada Lovelace, was an English mathematician and writer chiefly known for work on Charles Babbage's proposed mechanical general-purpose computer, the analytical engine. She was the first to recognise the machine had applications beyond pure calculation.",
+     "source": "https://en.wikipedia.org/wiki/Ada_Lovelace"
+    },
+    {
+     "action": "FINISH",
+     "args": {},
+     "observation": ""
+    }
+   ],
+   "answer": "Ada Lovelace: Augusta Ada King, Countess of Lovelace, also known as Ada Lovelace, was an English mathematician and writer chiefly known for work on Charles Babbage's proposed mechanical general-purpose computer, the analytical engine. She was the first to recognise the machine had applications beyond pure calculation."
+  },
+  {
+   "id": "t013",
+   "split": "dev",
+   "category": "wiki",
+   "goal": "What is the Great Barrier Reef?",
+   "steps": [
+    {
+     "action": "wiki_lookup",
+     "args": {
+      "topic": "Great Barrier Reef"
+     },
+     "observation": "Great Barrier Reef (Coral reef system in Queensland, Australia): The Great Barrier Reef is the world's largest coral reef system, composed of over 2,900 individual reefs and 900 islands stretching for over 2,300 kilometres (1,400 mi) over an area of approximately 344,400 square kilometres (133,000 mi2). The reef is located in the Coral Sea, off the coast of Queensland, Australia. It is separated from the coast by a channel 160 kilometres (100 mi) wide in places and over 61 metres (200 ft) deep.",
+     "answer": "Great Barrier Reef: The Great Barrier Reef is the world's largest coral reef system, composed of over 2,900 individual reefs and 900 islands stretching for over 2,300 kilometres (1,400 mi) over an area of approximately 344,400 square kilometres (133,000 mi2). The reef is located in the Coral Sea, off the coast of Queensland, Australia.",
+     "source": "https://en.wikipedia.org/wiki/Great_Barrier_Reef"
+    },
+    {
+     "action": "FINISH",
+     "args": {},
+     "observation": ""
+    }
+   ],
+   "answer": "Great Barrier Reef: The Great Barrier Reef is the world's largest coral reef system, composed of over 2,900 individual reefs and 900 islands stretching for over 2,300 kilometres (1,400 mi) over an area of approximately 344,400 square kilometres (133,000 mi2). The reef is located in the Coral Sea, off the coast of Queensland, Australia."
+  },
+  {
+   "id": "t014",
+   "split": "test",
+   "category": "wiki",
+   "goal": "Give me a short summary of the Rosetta Stone",
+   "steps": [
+    {
+     "action": "wiki_lookup",
+     "args": {
+      "topic": "Rosetta Stone"
+     },
+     "observation": "Rosetta Stone (Egyptian stele with three versions of a 196 BC decree): The Rosetta Stone is a stele of granodiorite inscribed with three versions of a decree issued in 196 BC during the Ptolemaic dynasty of Egypt, on behalf of King Ptolemy V Epiphanes. The top and middle texts are in Ancient Egyptian using hieroglyphic and Demotic scripts, respectively, while the bottom is in Ancient Greek. The decree has only minor differences across the three versions, making the Rosetta Stone key to deciphering the Egyptian scripts.",
+     "answer": "Rosetta Stone: The Rosetta Stone is a stele of granodiorite inscribed with three versions of a decree issued in 196 BC during the Ptolemaic dynasty of Egypt, on behalf of King Ptolemy V Epiphanes. The top and middle texts are in Ancient Egyptian using hieroglyphic and Demotic scripts, respectively, while the bottom is in Ancient Greek.",
+     "source": "https://en.wikipedia.org/wiki/Rosetta_Stone"
+    },
+    {
+     "action": "FINISH",
+     "args": {},
+     "observation": ""
+    }
+   ],
+   "answer": "Rosetta Stone: The Rosetta Stone is a stele of granodiorite inscribed with three versions of a decree issued in 196 BC during the Ptolemaic dynasty of Egypt, on behalf of King Ptolemy V Epiphanes. The top and middle texts are in Ancient Egyptian using hieroglyphic and Demotic scripts, respectively, while the bottom is in Ancient Greek."
+  },
+  {
+   "id": "t015",
+   "split": "test",
+   "category": "wiki",
+   "goal": "Who is Wangari Maathai?",
+   "steps": [
+    {
+     "action": "wiki_lookup",
+     "args": {
+      "topic": "Wangari Maathai"
+     },
+     "observation": "Wangarĩ Maathai (Kenyan environmental activist (1940–2011)): Wangarĩ Maathai was a Kenyan social, environmental, and political activist who founded the Green Belt Movement, an environmental non-governmental organization focused on planting trees, environmental conservation, and women's rights. In 2004, she became the first African woman to win the Nobel Peace Prize.",
+     "answer": "Wangarĩ Maathai: Wangarĩ Maathai was a Kenyan social, environmental, and political activist who founded the Green Belt Movement, an environmental non-governmental organization focused on planting trees, environmental conservation, and women's rights. In 2004, she became the first African woman to win the Nobel Peace Prize.",
+     "source": "https://en.wikipedia.org/wiki/Wangar%C4%A9_Maathai"
+    },
+    {
+     "action": "FINISH",
+     "args": {},
+     "observation": ""
+    }
+   ],
+   "answer": "Wangarĩ Maathai: Wangarĩ Maathai was a Kenyan social, environmental, and political activist who founded the Green Belt Movement, an environmental non-governmental organization focused on planting trees, environmental conservation, and women's rights. In 2004, she became the first African woman to win the Nobel Peace Prize."
+  },
+  {
+   "id": "t016",
+   "split": "dev",
+   "category": "wiki",
+   "goal": "What is Machu Picchu?",
+   "steps": [
+    {
+     "action": "wiki_lookup",
+     "args": {
+      "topic": "Machu Picchu"
+     },
+     "observation": "Machu Picchu (15th-century Inca citadel in Peru): Machu Picchu is a 15th-century Inca citadel located in the Eastern Cordillera of southern Peru on a mountain ridge at 2,430 meters (7,970 ft). It is situated in the Machupicchu District of Urubamba Province about 80 kilometers northwest of Cusco, above the Sacred Valley and along the Urubamba River, which forms a deep canyon with a subtropical mountain climate.",
+     "answer": "Machu Picchu: Machu Picchu is a 15th-century Inca citadel located in the Eastern Cordillera of southern Peru on a mountain ridge at 2,430 meters (7,970 ft). It is situated in the Machupicchu District of Urubamba Province about 80 kilometers northwest of Cusco, above the Sacred Valley and along the Urubamba River, which forms a deep canyon with a subtropical mountain climate.",
+     "source": "https://en.wikipedia.org/wiki/Machu_Picchu"
+    },
+    {
+     "action": "FINISH",
+     "args": {},
+     "observation": ""
+    }
+   ],
+   "answer": "Machu Picchu: Machu Picchu is a 15th-century Inca citadel located in the Eastern Cordillera of southern Peru on a mountain ridge at 2,430 meters (7,970 ft). It is situated in the Machupicchu District of Urubamba Province about 80 kilometers northwest of Cusco, above the Sacred Valley and along the Urubamba River, which forms a deep canyon with a subtropical mountain climate."
+  },
+  {
+   "id": "t017",
+   "split": "test",
+   "category": "wiki",
+   "goal": "Explain what the Hubble Space Telescope is",
+   "steps": [
+    {
+     "action": "wiki_lookup",
+     "args": {
+      "topic": "Hubble Space Telescope"
+     },
+     "observation": "Hubble Space Telescope (NASA/ESA space telescope launched in 1990): The Hubble Space Telescope is a space telescope that was launched into low Earth orbit in 1990 and remains in operation. It was not the first space telescope, but it is one of the largest and most versatile, renowned as a vital research tool and as a public relations boon for astronomy. The Hubble Space Telescope is named after astronomer Edwin Hubble and is one of NASA's Great Observatories.",
+     "answer": "Hubble Space Telescope: The Hubble Space Telescope is a space telescope that was launched into low Earth orbit in 1990 and remains in operation. It was not the first space telescope, but it is one of the largest and most versatile, renowned as a vital research tool and as a public relations boon for astronomy.",
+     "source": "https://en.wikipedia.org/wiki/Hubble_Space_Telescope"
+    },
+    {
+     "action": "FINISH",
+     "args": {},
+     "observation": ""
+    }
+   ],
+   "answer": "Hubble Space Telescope: The Hubble Space Telescope is a space telescope that was launched into low Earth orbit in 1990 and remains in operation. It was not the first space telescope, but it is one of the largest and most versatile, renowned as a vital research tool and as a public relations boon for astronomy."
+  },
+  {
+   "id": "t018",
+   "split": "test",
+   "category": "wiki",
+   "goal": "Look up Nikola Tesla",
+   "steps": [
+    {
+     "action": "wiki_lookup",
+     "args": {
+      "topic": "Nikola Tesla"
+     },
+     "observation": "Nikola Tesla (Serbian-American engineer and inventor (1856–1943)): Nikola Tesla was a Serbian-American engineer, futurist, and inventor. He is known for his contributions to the design of the modern alternating current (AC) electricity supply system.",
+     "answer": "Nikola Tesla: Nikola Tesla was a Serbian-American engineer, futurist, and inventor. He is known for his contributions to the design of the modern alternating current (AC) electricity supply system.",
+     "source": "https://en.wikipedia.org/wiki/Nikola_Tesla"
+    },
+    {
+     "action": "FINISH",
+     "args": {},
+     "observation": ""
+    }
+   ],
+   "answer": "Nikola Tesla: Nikola Tesla was a Serbian-American engineer, futurist, and inventor. He is known for his contributions to the design of the modern alternating current (AC) electricity supply system."
+  },
+  {
+   "id": "t019",
+   "split": "dev",
+   "category": "wiki",
+   "goal": "What was the Apollo 11 mission?",
+   "steps": [
+    {
+     "action": "wiki_lookup",
+     "args": {
+      "topic": "Apollo 11"
+     },
+     "observation": "Apollo 11 (First crewed Moon landing (1969)): Apollo 11 was the American spaceflight that first landed humans on the Moon, and the fifth crewed mission of NASA's Apollo program. The mission was crewed by Commander Neil Armstrong, Command Module Pilot Michael Collins, and Lunar Module Pilot Edwin \"Buzz\" Aldrin, all of whom were on their second and final spaceflight.",
+     "answer": "Apollo 11: Apollo 11 was the American spaceflight that first landed humans on the Moon, and the fifth crewed mission of NASA's Apollo program. The mission was crewed by Commander Neil Armstrong, Command Module Pilot Michael Collins, and Lunar Module Pilot Edwin \"Buzz\" Aldrin, all of whom were on their second and final spaceflight.",
+     "source": "https://en.wikipedia.org/wiki/Apollo_11"
+    },
+    {
+     "action": "FINISH",
+     "args": {},
+     "observation": ""
+    }
+   ],
+   "answer": "Apollo 11: Apollo 11 was the American spaceflight that first landed humans on the Moon, and the fifth crewed mission of NASA's Apollo program. The mission was crewed by Commander Neil Armstrong, Command Module Pilot Michael Collins, and Lunar Module Pilot Edwin \"Buzz\" Aldrin, all of whom were on their second and final spaceflight."
+  },
+  {
+   "id": "t020",
+   "split": "test",
+   "category": "wiki",
+   "goal": "Tell me about the Sahara",
+   "steps": [
+    {
+     "action": "wiki_lookup",
+     "args": {
+      "topic": "Sahara"
+     },
+     "observation": "Sahara (Desert on the African continent): The Sahara is a desert spanning North Africa. With an area of 9,200,000 square kilometres (3,600,000 sq mi), it is the largest hot desert in the world and the third-largest desert overall, smaller only than the deserts of Antarctica and the northern Arctic.",
+     "answer": "Sahara: The Sahara is a desert spanning North Africa. With an area of 9,200,000 square kilometres (3,600,000 sq mi), it is the largest hot desert in the world and the third-largest desert overall, smaller only than the deserts of Antarctica and the northern Arctic.",
+     "source": "https://en.wikipedia.org/wiki/Sahara"
+    },
+    {
+     "action": "FINISH",
+     "args": {},
+     "observation": ""
+    }
+   ],
+   "answer": "Sahara: The Sahara is a desert spanning North Africa. With an area of 9,200,000 square kilometres (3,600,000 sq mi), it is the largest hot desert in the world and the third-largest desert overall, smaller only than the deserts of Antarctica and the northern Arctic."
+  },
+  {
+   "id": "t021",
+   "split": "test",
+   "category": "fact",
+   "goal": "What is the population of Canada?",
+   "steps": [
+    {
+     "action": "wikidata_fact",
+     "args": {
+      "entity": "Canada",
+      "property": "population"
+     },
+     "observation": "Population of Canada (country in North America): 36,991,981 (Wikidata)",
+     "answer": "Population of Canada (country in North America): 36,991,981 (Wikidata)",
+     "source": "https://www.wikidata.org/wiki/Q16"
+    },
+    {
+     "action": "FINISH",
+     "args": {},
+     "observation": ""
+    }
+   ],
+   "answer": "Population of Canada (country in North America): 36,991,981 (Wikidata)"
+  },
+  {
+   "id": "t022",
+   "split": "dev",
+   "category": "fact",
+   "goal": "Who is the CEO of Microsoft?",
+   "steps": [
+    {
+     "action": "wikidata_fact",
+     "args": {
+      "entity": "Microsoft",
+      "property": "ceo"
+     },
+     "observation": "Chief executive officer of Microsoft (American multinational technology corporation): Satya Nadella (Wikidata)",
+     "answer": "Chief executive officer of Microsoft (American multinational technology corporation): Satya Nadella (Wikidata)",
+     "source": "https://www.wikidata.org/wiki/Q2283"
+    },
+    {
+     "action": "FINISH",
+     "args": {},
+     "observation": ""
+    }
+   ],
+   "answer": "Chief executive officer of Microsoft (American multinational technology corporation): Satya Nadella (Wikidata)"
+  },
+  {
+   "id": "t023",
+   "split": "test",
+   "category": "fact",
+   "goal": "What is the capital of Australia?",
+   "steps": [
+    {
+     "action": "wikidata_fact",
+     "args": {
+      "entity": "Australia",
+      "property": "capital"
+     },
+     "observation": "Capital city of Australia (country in Oceania): Canberra (Wikidata)",
+     "answer": "Capital city of Australia (country in Oceania): Canberra (Wikidata)",
+     "source": "https://www.wikidata.org/wiki/Q408"
+    },
+    {
+     "action": "FINISH",
+     "args": {},
+     "observation": ""
+    }
+   ],
+   "answer": "Capital city of Australia (country in Oceania): Canberra (Wikidata)"
+  },
+  {
+   "id": "t024",
+   "split": "test",
+   "category": "fact",
+   "goal": "When was IKEA founded?",
+   "steps": [
+    {
+     "action": "wikidata_fact",
+     "args": {
+      "entity": "IKEA",
+      "property": "founded"
+     },
+     "observation": "Date founded or created of IKEA (Swedish multinational furniture store chain): 1943 (Wikidata)",
+     "answer": "Date founded or created of IKEA (Swedish multinational furniture store chain): 1943 (Wikidata)",
+     "source": "https://www.wikidata.org/wiki/Q54078"
+    },
+    {
+     "action": "FINISH",
+     "args": {},
+     "observation": ""
+    }
+   ],
+   "answer": "Date founded or created of IKEA (Swedish multinational furniture store chain): 1943 (Wikidata)"
+  },
+  {
+   "id": "t025",
+   "split": "dev",
+   "category": "fact",
+   "goal": "What currency does Switzerland use?",
+   "steps": [
+    {
+     "action": "wikidata_fact",
+     "args": {
+      "entity": "Switzerland",
+      "property": "currency"
+     },
+     "observation": "Currency of Switzerland (country in Central Europe): Swiss franc (Wikidata)",
+     "answer": "Currency of Switzerland (country in Central Europe): Swiss franc (Wikidata)",
+     "source": "https://www.wikidata.org/wiki/Q39"
+    },
+    {
+     "action": "FINISH",
+     "args": {},
+     "observation": ""
+    }
+   ],
+   "answer": "Currency of Switzerland (country in Central Europe): Swiss franc (Wikidata)"
+  },
+  {
+   "id": "t026",
+   "split": "test",
+   "category": "fact",
+   "goal": "How tall is the Burj Khalifa?",
+   "steps": [
+    {
+     "action": "wikidata_fact",
+     "args": {
+      "entity": "Burj Khalifa",
+      "property": "height"
+     },
+     "observation": "Height of Burj Khalifa (skyscraper in Dubai, United Arab Emirates): 828 m (Wikidata)",
+     "answer": "Height of Burj Khalifa (skyscraper in Dubai, United Arab Emirates): 828 m (Wikidata)",
+     "source": "https://www.wikidata.org/wiki/Q12495"
+    },
+    {
+     "action": "FINISH",
+     "args": {},
+     "observation": ""
+    }
+   ],
+   "answer": "Height of Burj Khalifa (skyscraper in Dubai, United Arab Emirates): 828 m (Wikidata)"
+  },
+  {
+   "id": "t027",
+   "split": "test",
+   "category": "fact",
+   "goal": "What is the official language of Brazil?",
+   "steps": [
+    {
+     "action": "wikidata_fact",
+     "args": {
+      "entity": "Brazil",
+      "property": "official_language"
+     },
+     "observation": "Official language of Brazil (country in South America): Portuguese (Wikidata)",
+     "answer": "Official language of Brazil (country in South America): Portuguese (Wikidata)",
+     "source": "https://www.wikidata.org/wiki/Q155"
+    },
+    {
+     "action": "FINISH",
+     "args": {},
+     "observation": ""
+    }
+   ],
+   "answer": "Official language of Brazil (country in South America): Portuguese (Wikidata)"
+  },
+  {
+   "id": "t028",
+   "split": "dev",
+   "category": "fact",
+   "goal": "Who founded Nintendo?",
+   "steps": [
+    {
+     "action": "wikidata_fact",
+     "args": {
+      "entity": "Nintendo",
+      "property": "founder"
+     },
+     "observation": "Founder of Nintendo (Japanese multinational video game and consumer electronics company): Fusajirō Yamauchi (Wikidata)",
+     "answer": "Founder of Nintendo (Japanese multinational video game and consumer electronics company): Fusajirō Yamauchi (Wikidata)",
+     "source": "https://www.wikidata.org/wiki/Q8093"
+    },
+    {
+     "action": "FINISH",
+     "args": {},
+     "observation": ""
+    }
+   ],
+   "answer": "Founder of Nintendo (Japanese multinational video game and consumer electronics company): Fusajirō Yamauchi (Wikidata)"
+  },
+  {
+   "id": "t029",
+   "split": "test",
+   "category": "fact",
+   "goal": "What is the area of Iceland?",
+   "steps": [
+    {
+     "action": "wikidata_fact",
+     "args": {
+      "entity": "Iceland",
+      "property": "area"
+     },
+     "observation": "Area of Iceland (Nordic island country in the North Atlantic Ocean): 103,004 km² (Wikidata)",
+     "answer": "Area of Iceland (Nordic island country in the North Atlantic Ocean): 103,004 km² (Wikidata)",
+     "source": "https://www.wikidata.org/wiki/Q189"
+    },
+    {
+     "action": "FINISH",
+     "args": {},
+     "observation": ""
+    }
+   ],
+   "answer": "Area of Iceland (Nordic island country in the North Atlantic Ocean): 103,004 km² (Wikidata)"
+  },
+  {
+   "id": "t030",
+   "split": "test",
+   "category": "fact",
+   "goal": "Who is the prime minister of Japan?",
+   "steps": [
+    {
+     "action": "wikidata_fact",
+     "args": {
+      "entity": "Japan",
+      "property": "head_of_government"
+     },
+     "observation": "Head of government of Japan (island country in East Asia): Sanae Takaichi (Wikidata)",
+     "answer": "Head of government of Japan (island country in East Asia): Sanae Takaichi (Wikidata)",
+     "source": "https://www.wikidata.org/wiki/Q17"
+    },
+    {
+     "action": "FINISH",
+     "args": {},
+     "observation": ""
+    }
+   ],
+   "answer": "Head of government of Japan (island country in East Asia): Sanae Takaichi (Wikidata)"
+  },
+  {
+   "id": "t031",
+   "split": "dev",
+   "category": "fact",
+   "goal": "Which country is Marrakesh in?",
+   "steps": [
+    {
+     "action": "wikidata_fact",
+     "args": {
+      "entity": "Marrakesh",
+      "property": "country"
+     },
+     "observation": "Country of Marrakech (city in Marrakesh-Safi, Morocco): Morocco (Wikidata)",
+     "answer": "Country of Marrakech (city in Marrakesh-Safi, Morocco): Morocco (Wikidata)",
+     "source": "https://www.wikidata.org/wiki/Q101625"
+    },
+    {
+     "action": "FINISH",
+     "args": {},
+     "observation": ""
+    }
+   ],
+   "answer": "Country of Marrakech (city in Marrakesh-Safi, Morocco): Morocco (Wikidata)"
+  },
+  {
+   "id": "t032",
+   "split": "test",
+   "category": "fact",
+   "goal": "What is the population of Mexico City?",
+   "steps": [
+    {
+     "action": "wikidata_fact",
+     "args": {
+      "entity": "Mexico City",
+      "property": "population"
+     },
+     "observation": "Population of Mexico City (capital and largest city of Mexico): 9,209,944 (Wikidata)",
+     "answer": "Population of Mexico City (capital and largest city of Mexico): 9,209,944 (Wikidata)",
+     "source": "https://www.wikidata.org/wiki/Q1489"
+    },
+    {
+     "action": "FINISH",
+     "args": {},
+     "observation": ""
+    }
+   ],
+   "answer": "Population of Mexico City (capital and largest city of Mexico): 9,209,944 (Wikidata)"
+  },
+  {
+   "id": "t033",
+   "split": "test",
+   "category": "calc",
+   "goal": "What's 18% of 2,450?",
+   "steps": [
+    {
+     "action": "calculator",
+     "args": {
+      "expression": "18% of 2,450"
+     },
+     "observation": "18% of 2,450 = 441",
+     "answer": "18% of 2,450 = 441"
+    },
+    {
+     "action": "FINISH",
+     "args": {},
+     "observation": ""
+    }
+   ],
+   "answer": "18% of 2,450 = 441"
+  },
+  {
+   "id": "t034",
+   "split": "dev",
+   "category": "calc",
+   "goal": "What is 1,250 times 12?",
+   "steps": [
+    {
+     "action": "calculator",
+     "args": {
+      "expression": "1,250 times 12"
+     },
+     "observation": "1,250 times 12 = 15,000",
+     "answer": "1,250 times 12 = 15,000"
+    },
+    {
+     "action": "FINISH",
+     "args": {},
+     "observation": ""
+    }
+   ],
+   "answer": "1,250 times 12 = 15,000"
+  },
+  {
+   "id": "t035",
+   "split": "test",
+   "category": "calc",
+   "goal": "Calculate (45 + 55) * 3",
+   "steps": [
+    {
+     "action": "calculator",
+     "args": {
+      "expression": "(45 + 55) * 3"
+     },
+     "observation": "(45 + 55) * 3 = 300",
+     "answer": "(45 + 55) * 3 = 300"
+    },
+    {
+     "action": "FINISH",
+     "args": {},
+     "observation": ""
+    }
+   ],
+   "answer": "(45 + 55) * 3 = 300"
+  },
+  {
+   "id": "t036",
+   "split": "test",
+   "category": "calc",
+   "goal": "What is 2^16?",
+   "steps": [
+    {
+     "action": "calculator",
+     "args": {
+      "expression": "2^16"
+     },
+     "observation": "2^16 = 65,536",
+     "answer": "2^16 = 65,536"
+    },
+    {
+     "action": "FINISH",
+     "args": {},
+     "observation": ""
+    }
+   ],
+   "answer": "2^16 = 65,536"
+  },
+  {
+   "id": "t037",
+   "split": "dev",
+   "category": "calc",
+   "goal": "What is 7,200 divided by 16?",
+   "steps": [
+    {
+     "action": "calculator",
+     "args": {
+      "expression": "7,200 divided by 16"
+     },
+     "observation": "7,200 divided by 16 = 450",
+     "answer": "7,200 divided by 16 = 450"
+    },
+    {
+     "action": "FINISH",
+     "args": {},
+     "observation": ""
+    }
+   ],
+   "answer": "7,200 divided by 16 = 450"
+  },
+  {
+   "id": "t038",
+   "split": "test",
+   "category": "calc",
+   "goal": "How much is 15% of 80?",
+   "steps": [
+    {
+     "action": "calculator",
+     "args": {
+      "expression": "15% of 80"
+     },
+     "observation": "15% of 80 = 12",
+     "answer": "15% of 80 = 12"
+    },
+    {
+     "action": "FINISH",
+     "args": {},
+     "observation": ""
+    }
+   ],
+   "answer": "15% of 80 = 12"
+  },
+  {
+   "id": "t039",
+   "split": "test",
+   "category": "calc",
+   "goal": "What is 999 minus 123?",
+   "steps": [
+    {
+     "action": "calculator",
+     "args": {
+      "expression": "999 minus 123"
+     },
+     "observation": "999 minus 123 = 876",
+     "answer": "999 minus 123 = 876"
+    },
+    {
+     "action": "FINISH",
+     "args": {},
+     "observation": ""
+    }
+   ],
+   "answer": "999 minus 123 = 876"
+  },
+  {
+   "id": "t040",
+   "split": "dev",
+   "category": "calc",
+   "goal": "Multiply 3.5 by 4.2",
+   "steps": [
+    {
+     "action": "calculator",
+     "args": {
+      "expression": "3.5 * 4.2"
+     },
+     "observation": "3.5 * 4.2 = 14.7",
+     "answer": "3.5 * 4.2 = 14.7"
+    },
+    {
+     "action": "FINISH",
+     "args": {},
+     "observation": ""
+    }
+   ],
+   "answer": "3.5 * 4.2 = 14.7"
+  },
+  {
+   "id": "t041",
+   "split": "test",
+   "category": "units",
+   "goal": "Convert 5 miles to kilometers",
+   "steps": [
+    {
+     "action": "unit_convert",
+     "args": {
+      "quantity": "5 miles",
+      "to_unit": "km"
+     },
+     "observation": "5 miles = 8.047 kilometers",
+     "answer": "5 miles = 8.047 kilometers"
+    },
+    {
+     "action": "FINISH",
+     "args": {},
+     "observation": ""
+    }
+   ],
+   "answer": "5 miles = 8.047 kilometers"
+  },
+  {
+   "id": "t042",
+   "split": "test",
+   "category": "units",
+   "goal": "How many pounds is 70 kg?",
+   "steps": [
+    {
+     "action": "unit_convert",
+     "args": {
+      "quantity": "70 kg",
+      "to_unit": "lb"
+     },
+     "observation": "70 kg = 154.32 pounds",
+     "answer": "70 kg = 154.32 pounds"
+    },
+    {
+     "action": "FINISH",
+     "args": {},
+     "observation": ""
+    }
+   ],
+   "answer": "70 kg = 154.32 pounds"
+  },
+  {
+   "id": "t043",
+   "split": "dev",
+   "category": "units",
+   "goal": "What is 100°F in Celsius?",
+   "steps": [
+    {
+     "action": "unit_convert",
+     "args": {
+      "quantity": "100°F",
+      "to_unit": "C"
+     },
+     "observation": "100°F = 37.78 degrees Celsius",
+     "answer": "100°F = 37.78 degrees Celsius"
+    },
+    {
+     "action": "FINISH",
+     "args": {},
+     "observation": ""
+    }
+   ],
+   "answer": "100°F = 37.78 degrees Celsius"
+  },
+  {
+   "id": "t044",
+   "split": "test",
+   "category": "units",
+   "goal": "Convert 3 gallons to liters",
+   "steps": [
+    {
+     "action": "unit_convert",
+     "args": {
+      "quantity": "3 gallons",
+      "to_unit": "l"
+     },
+     "observation": "3 gallons = 11.36 liters",
+     "answer": "3 gallons = 11.36 liters"
+    },
+    {
+     "action": "FINISH",
+     "args": {},
+     "observation": ""
+    }
+   ],
+   "answer": "3 gallons = 11.36 liters"
+  },
+  {
+   "id": "t045",
+   "split": "test",
+   "category": "units",
+   "goal": "How many feet is 1,000 meters?",
+   "steps": [
+    {
+     "action": "unit_convert",
+     "args": {
+      "quantity": "1,000 meters",
+      "to_unit": "ft"
+     },
+     "observation": "1,000 meters = 3,280.84 feet",
+     "answer": "1,000 meters = 3,280.84 feet"
+    },
+    {
+     "action": "FINISH",
+     "args": {},
+     "observation": ""
+    }
+   ],
+   "answer": "1,000 meters = 3,280.84 feet"
+  },
+  {
+   "id": "t046",
+   "split": "dev",
+   "category": "units",
+   "goal": "What is 60 mph in km per hour?",
+   "steps": [
+    {
+     "action": "unit_convert",
+     "args": {
+      "quantity": "60 mph",
+      "to_unit": "km/h"
+     },
+     "observation": "60 mph = 96.56 km per hour",
+     "answer": "60 mph = 96.56 km per hour"
+    },
+    {
+     "action": "FINISH",
+     "args": {},
+     "observation": ""
+    }
+   ],
+   "answer": "60 mph = 96.56 km per hour"
+  },
+  {
+   "id": "t047",
+   "split": "test",
+   "category": "units",
+   "goal": "Convert 42 kilometers to miles",
+   "steps": [
+    {
+     "action": "unit_convert",
+     "args": {
+      "quantity": "42 kilometers",
+      "to_unit": "mi"
+     },
+     "observation": "42 kilometers = 26.1 miles",
+     "answer": "42 kilometers = 26.1 miles"
+    },
+    {
+     "action": "FINISH",
+     "args": {},
+     "observation": ""
+    }
+   ],
+   "answer": "42 kilometers = 26.1 miles"
+  },
+  {
+   "id": "t048",
+   "split": "test",
+   "category": "date",
+   "goal": "What date is 3 weeks after March 4?",
+   "steps": [
+    {
+     "action": "date_math",
+     "args": {
+      "date": "March 4",
+      "offset": "3 weeks after"
+     },
+     "observation": "3 weeks after Wednesday, March 4, 2026 is Wednesday, March 25, 2026",
+     "answer": "3 weeks after Wednesday, March 4, 2026 is Wednesday, March 25, 2026"
+    },
+    {
+     "action": "FINISH",
+     "args": {},
+     "observation": ""
+    }
+   ],
+   "answer": "3 weeks after Wednesday, March 4, 2026 is Wednesday, March 25, 2026"
+  },
+  {
+   "id": "t049",
+   "split": "dev",
+   "category": "date",
+   "goal": "What is the date 90 days from today?",
+   "steps": [
+    {
+     "action": "date_math",
+     "args": {
+      "date": "today",
+      "offset": "90 days from"
+     },
+     "observation": "90 days after Thursday, September 24, 2026 is Wednesday, December 23, 2026",
+     "answer": "90 days after Thursday, September 24, 2026 is Wednesday, December 23, 2026"
+    },
+    {
+     "action": "FINISH",
+     "args": {},
+     "observation": ""
+    }
+   ],
+   "answer": "90 days after Thursday, September 24, 2026 is Wednesday, December 23, 2026"
+  },
+  {
+   "id": "t050",
+   "split": "test",
+   "category": "date",
+   "goal": "What day is 10 days before December 25?",
+   "steps": [
+    {
+     "action": "date_math",
+     "args": {
+      "date": "December 25",
+      "offset": "10 days before"
+     },
+     "observation": "10 days before Friday, December 25, 2026 is Tuesday, December 15, 2026",
+     "answer": "10 days before Friday, December 25, 2026 is Tuesday, December 15, 2026"
+    },
+    {
+     "action": "FINISH",
+     "args": {},
+     "observation": ""
+    }
+   ],
+   "answer": "10 days before Friday, December 25, 2026 is Tuesday, December 15, 2026"
+  },
+  {
+   "id": "t051",
+   "split": "test",
+   "category": "date",
+   "goal": "What date is 6 months after January 31, 2027?",
+   "steps": [
+    {
+     "action": "date_math",
+     "args": {
+      "date": "January 31, 2027",
+      "offset": "6 months after"
+     },
+     "observation": "6 months after Sunday, January 31, 2027 is Saturday, July 31, 2027",
+     "answer": "6 months after Sunday, January 31, 2027 is Saturday, July 31, 2027"
+    },
+    {
+     "action": "FINISH",
+     "args": {},
+     "observation": ""
+    }
+   ],
+   "answer": "6 months after Sunday, January 31, 2027 is Saturday, July 31, 2027"
+  },
+  {
+   "id": "t052",
+   "split": "dev",
+   "category": "date",
+   "goal": "What date will it be 2 weeks after today?",
+   "steps": [
+    {
+     "action": "date_math",
+     "args": {
+      "date": "today",
+      "offset": "2 weeks after"
+     },
+     "observation": "2 weeks after Thursday, September 24, 2026 is Thursday, October 8, 2026",
+     "answer": "2 weeks after Thursday, September 24, 2026 is Thursday, October 8, 2026"
+    },
+    {
+     "action": "FINISH",
+     "args": {},
+     "observation": ""
+    }
+   ],
+   "answer": "2 weeks after Thursday, September 24, 2026 is Thursday, October 8, 2026"
+  },
+  {
+   "id": "t053",
+   "split": "test",
+   "category": "date",
+   "goal": "What is 45 days before July 4?",
+   "steps": [
+    {
+     "action": "date_math",
+     "args": {
+      "date": "July 4",
+      "offset": "45 days before"
+     },
+     "observation": "45 days before Saturday, July 4, 2026 is Wednesday, May 20, 2026",
+     "answer": "45 days before Saturday, July 4, 2026 is Wednesday, May 20, 2026"
+    },
+    {
+     "action": "FINISH",
+     "args": {},
+     "observation": ""
+    }
+   ],
+   "answer": "45 days before Saturday, July 4, 2026 is Wednesday, May 20, 2026"
+  },
+  {
+   "id": "t054",
+   "split": "test",
+   "category": "multihop",
+   "goal": "What's the weather this weekend in the city where the Eiffel Tower is?",
+   "steps": [
+    {
+     "action": "wiki_lookup",
+     "args": {
+      "topic": "Eiffel Tower"
+     },
+     "observation": "Eiffel Tower (Tower in Paris, France): The Eiffel Tower is a lattice tower on the Champ de Mars in Paris, France. It is named after the engineer Gustave Eiffel, whose company designed and built the tower from 1887 to 1889.",
+     "answer": "Eiffel Tower: The Eiffel Tower is a lattice tower on the Champ de Mars in Paris, France. It is named after the engineer Gustave Eiffel, whose company designed and built the tower from 1887 to 1889.",
+     "source": "https://en.wikipedia.org/wiki/Eiffel_Tower"
+    },
+    {
+     "action": "weather",
+     "args": {
+      "place": "Paris",
+      "when": "weekend"
+     },
+     "observation": "Forecast for Paris, Île-de-France Region, France (this weekend (Saturday and Sunday)): Sat 09-26: overcast, 16–24°C, rain chance 0%; Sun 09-27: overcast, 14–27°C, rain chance 0%",
+     "answer": "Forecast for Paris, Île-de-France Region, France (this weekend (Saturday and Sunday)): Sat 09-26: overcast, 16–24°C, rain chance 0%; Sun 09-27: overcast, 14–27°C, rain chance 0%",
+     "source": "https://open-meteo.com/"
+    },
+    {
+     "action": "FINISH",
+     "args": {},
+     "observation": ""
+    }
+   ],
+   "answer": "Forecast for Paris, Île-de-France Region, France (this weekend (Saturday and Sunday)): Sat 09-26: overcast, 16–24°C, rain chance 0%; Sun 09-27: overcast, 14–27°C, rain chance 0%"
+  },
+  {
+   "id": "t055",
+   "split": "dev",
+   "category": "multihop",
+   "goal": "What is the population of the country where Kyoto is?",
+   "steps": [
+    {
+     "action": "wiki_lookup",
+     "args": {
+      "topic": "Kyoto"
+     },
+     "alt": [
+      {
+       "action": "wikidata_fact",
+       "args": {
+        "entity": "Kyoto",
+        "property": "country"
+       }
+      }
+     ],
+     "observation": "Kyoto (City in the Kansai region of Japan): Kyoto, officially Kyoto City , is the capital city of Kyoto Prefecture in the Kansai region of Japan's largest and most populous island of Honshu. As of 2020, the city had a population of 1.46 million, making it the ninth-most populous city in Japan. More than half (56.8%) of Kyoto Prefecture's population resides in the city.",
+     "answer": "Kyoto: Kyoto, officially Kyoto City , is the capital city of Kyoto Prefecture in the Kansai region of Japan's largest and most populous island of Honshu. As of 2020, the city had a population of 1.46 million, making it the ninth-most populous city in Japan.",
+     "source": "https://en.wikipedia.org/wiki/Kyoto"
+    },
+    {
+     "action": "wikidata_fact",
+     "args": {
+      "entity": "Japan",
+      "property": "population"
+     },
+     "observation": "Population of Japan (island country in East Asia): 123,802,000 (Wikidata)",
+     "answer": "Population of Japan (island country in East Asia): 123,802,000 (Wikidata)",
+     "source": "https://www.wikidata.org/wiki/Q17"
+    },
+    {
+     "action": "FINISH",
+     "args": {},
+     "observation": ""
+    }
+   ],
+   "answer": "Population of Japan (island country in East Asia): 123,802,000 (Wikidata)"
+  },
+  {
+   "id": "t056",
+   "split": "test",
+   "category": "multihop",
+   "goal": "What's the weather tomorrow in the capital of Australia?",
+   "steps": [
+    {
+     "action": "wikidata_fact",
+     "args": {
+      "entity": "Australia",
+      "property": "capital"
+     },
+     "observation": "Capital city of Australia (country in Oceania): Canberra (Wikidata)",
+     "answer": "Capital city of Australia (country in Oceania): Canberra (Wikidata)",
+     "source": "https://www.wikidata.org/wiki/Q408"
+    },
+    {
+     "action": "weather",
+     "args": {
+      "place": "Canberra",
+      "when": "tomorrow"
+     },
+     "observation": "Forecast for Canberra, Australian Capital Territory, Australia (tomorrow): Sat 09-26: light drizzle, 11–25°C, rain chance 52%",
+     "answer": "Forecast for Canberra, Australian Capital Territory, Australia (tomorrow): Sat 09-26: light drizzle, 11–25°C, rain chance 52%",
+     "source": "https://open-meteo.com/"
+    },
+    {
+     "action": "FINISH",
+     "args": {},
+     "observation": ""
+    }
+   ],
+   "answer": "Forecast for Canberra, Australian Capital Territory, Australia (tomorrow): Sat 09-26: light drizzle, 11–25°C, rain chance 52%"
+  },
+  {
+   "id": "t057",
+   "split": "test",
+   "category": "multihop",
+   "goal": "Who is the CEO of the company that makes the iPhone?",
+   "steps": [
+    {
+     "action": "wiki_lookup",
+     "args": {
+      "topic": "iPhone"
+     },
+     "observation": "IPhone (Line of smartphones by Apple): The iPhone is a line of smartphones developed and marketed by Apple that run iOS, the company's own mobile operating system. The first-generation iPhone was announced by then–Apple CEO and co-founder Steve Jobs on January 9, 2007, at Macworld 2007, and first launched in June 2007. Since then, Apple has annually released new iPhone models and iOS versions; the current lineup consists of the iPhone 17, the lower-end iPhone 17e, the lighter and thinner iPhone Air, the higher-end iPhone 18 Pro and Pro Max, and the foldable iPhone Duo.",
+     "answer": "IPhone: The iPhone is a line of smartphones developed and marketed by Apple that run iOS, the company's own mobile operating system. The first-generation iPhone was announced by then–Apple CEO and co-founder Steve Jobs on January 9, 2007, at Macworld 2007, and first launched in June 2007.",
+     "source": "https://en.wikipedia.org/wiki/IPhone"
+    },
+    {
+     "action": "wikidata_fact",
+     "args": {
+      "entity": [
+       "Apple Inc.",
+       "Apple"
+      ],
+      "property": "ceo"
+     },
+     "observation": "Chief executive officer of Apple Inc. (American multinational technology company based in Cupertino, California): Q106028933 (Wikidata)",
+     "answer": "Chief executive officer of Apple Inc. (American multinational technology company based in Cupertino, California): Q106028933 (Wikidata)",
+     "source": "https://www.wikidata.org/wiki/Q312"
+    },
+    {
+     "action": "FINISH",
+     "args": {},
+     "observation": ""
+    }
+   ],
+   "answer": "Chief executive officer of Apple Inc. (American multinational technology company based in Cupertino, California): Q106028933 (Wikidata)"
+  },
+  {
+   "id": "t058",
+   "split": "dev",
+   "category": "multihop",
+   "goal": "What currency is used in the country where Machu Picchu is?",
+   "steps": [
+    {
+     "action": "wiki_lookup",
+     "args": {
+      "topic": "Machu Picchu"
+     },
+     "alt": [
+      {
+       "action": "wikidata_fact",
+       "args": {
+        "entity": "Machu Picchu",
+        "property": "country"
+       }
+      }
+     ],
+     "observation": "Machu Picchu (15th-century Inca citadel in Peru): Machu Picchu is a 15th-century Inca citadel located in the Eastern Cordillera of southern Peru on a mountain ridge at 2,430 meters (7,970 ft). It is situated in the Machupicchu District of Urubamba Province about 80 kilometers northwest of Cusco, above the Sacred Valley and along the Urubamba River, which forms a deep canyon with a subtropical mountain climate.",
+     "answer": "Machu Picchu: Machu Picchu is a 15th-century Inca citadel located in the Eastern Cordillera of southern Peru on a mountain ridge at 2,430 meters (7,970 ft). It is situated in the Machupicchu District of Urubamba Province about 80 kilometers northwest of Cusco, above the Sacred Valley and along the Urubamba River, which forms a deep canyon with a subtropical mountain climate.",
+     "source": "https://en.wikipedia.org/wiki/Machu_Picchu"
+    },
+    {
+     "action": "wikidata_fact",
+     "args": {
+      "entity": "Peru",
+      "property": "currency"
+     },
+     "observation": "Currency of Peru (sovereign state in South America): Nuevo sol (Wikidata)",
+     "answer": "Currency of Peru (sovereign state in South America): Nuevo sol (Wikidata)",
+     "source": "https://www.wikidata.org/wiki/Q419"
+    },
+    {
+     "action": "FINISH",
+     "args": {},
+     "observation": ""
+    }
+   ],
+   "answer": "Currency of Peru (sovereign state in South America): Nuevo sol (Wikidata)"
+  },
+  {
+   "id": "t059",
+   "split": "test",
+   "category": "multihop",
+   "goal": "What is the weather today in the city where the Colosseum is?",
+   "steps": [
+    {
+     "action": "wiki_lookup",
+     "args": {
+      "topic": "Colosseum"
+     },
+     "observation": "Colosseum (Ancient Roman amphitheater in Rome): The Colosseum is an elliptical amphitheatre in the centre of the city of Rome, Italy, just east of the Roman Forum. It is the largest ancient amphitheatre ever built, and is the largest standing amphitheatre in the world. Construction began under the Emperor Vespasian in 72 and was completed in AD 80 under his successor and heir, Titus.",
+     "answer": "Colosseum: The Colosseum is an elliptical amphitheatre in the centre of the city of Rome, Italy, just east of the Roman Forum. It is the largest ancient amphitheatre ever built, and is the largest standing amphitheatre in the world.",
+     "source": "https://en.wikipedia.org/wiki/Colosseum"
+    },
+    {
+     "action": "weather",
+     "args": {
+      "place": "Rome",
+      "when": "today"
+     },
+     "observation": "Forecast for Rome, Lazio, Italy (today): Thu 09-24: overcast, 14–26°C, rain chance 0%",
+     "answer": "Forecast for Rome, Lazio, Italy (today): Thu 09-24: overcast, 14–26°C, rain chance 0%",
+     "source": "https://open-meteo.com/"
+    },
+    {
+     "action": "FINISH",
+     "args": {},
+     "observation": ""
+    }
+   ],
+   "answer": "Forecast for Rome, Lazio, Italy (today): Thu 09-24: overcast, 14–26°C, rain chance 0%"
+  },
+  {
+   "id": "t060",
+   "split": "test",
+   "category": "multihop",
+   "goal": "What is the population of the capital of Canada?",
+   "steps": [
+    {
+     "action": "wikidata_fact",
+     "args": {
+      "entity": "Canada",
+      "property": "capital"
+     },
+     "observation": "Capital city of Canada (country in North America): Ottawa (Wikidata)",
+     "answer": "Capital city of Canada (country in North America): Ottawa (Wikidata)",
+     "source": "https://www.wikidata.org/wiki/Q16"
+    },
+    {
+     "action": "wikidata_fact",
+     "args": {
+      "entity": "Ottawa",
+      "property": "population"
+     },
+     "observation": "Population of Ottawa (capital city of Canada): 1,017,449 (Wikidata)",
+     "answer": "Population of Ottawa (capital city of Canada): 1,017,449 (Wikidata)",
+     "source": "https://www.wikidata.org/wiki/Q1930"
+    },
+    {
+     "action": "FINISH",
+     "args": {},
+     "observation": ""
+    }
+   ],
+   "answer": "Population of Ottawa (capital city of Canada): 1,017,449 (Wikidata)"
+  },
+  {
+   "id": "t061",
+   "split": "dev",
+   "category": "multihop",
+   "goal": "What is the official language of the country where Angkor Wat is?",
+   "steps": [
+    {
+     "action": "wiki_lookup",
+     "args": {
+      "topic": "Angkor Wat"
+     },
+     "alt": [
+      {
+       "action": "wikidata_fact",
+       "args": {
+        "entity": "Angkor Wat",
+        "property": "country"
+       }
+      }
+     ],
+     "observation": "Angkor Wat (Buddhist temple complex in Cambodia): Angkor Wat is a Vaishnava Hindu and Theravada Buddhist temple complex in Siem Reap, Cambodia, and the largest religious complex in the world. Located on a site measuring 162.6 hectares within the ancient capital of Angkor, it was constructed between 1113 and 1150 CE during the reign of the Khmer king Suryavarman II as a Hindu temple dedicated to Vishnu. From the late 13th century onward, the complex was gradually transformed into a Buddhist temple and has remained an active center of Buddhist worship for centuries.",
+     "answer": "Angkor Wat: Angkor Wat is a Vaishnava Hindu and Theravada Buddhist temple complex in Siem Reap, Cambodia, and the largest religious complex in the world. Located on a site measuring 162.6 hectares within the ancient capital of Angkor, it was constructed between 1113 and 1150 CE during the reign of the Khmer king Suryavarman II as a Hindu temple dedicated to Vishnu.",
+     "source": "https://en.wikipedia.org/wiki/Angkor_Wat"
+    },
+    {
+     "action": "wikidata_fact",
+     "args": {
+      "entity": "Cambodia",
+      "property": "official_language"
+     },
+     "observation": "Official language of Cambodia (country in Southeast Asia): Khmer (Wikidata)",
+     "answer": "Official language of Cambodia (country in Southeast Asia): Khmer (Wikidata)",
+     "source": "https://www.wikidata.org/wiki/Q424"
+    },
+    {
+     "action": "FINISH",
+     "args": {},
+     "observation": ""
+    }
+   ],
+   "answer": "Official language of Cambodia (country in Southeast Asia): Khmer (Wikidata)"
+  },
+  {
+   "id": "t062",
+   "split": "test",
+   "category": "multihop",
+   "goal": "Who founded the company that makes the PlayStation?",
+   "steps": [
+    {
+     "action": "wiki_lookup",
+     "args": {
+      "topic": "PlayStation"
+     },
+     "observation": "PlayStation (Sony's video gaming brand): PlayStation is a video gaming brand owned and produced by Sony Interactive Entertainment (SIE), a subsidiary of Japanese conglomerate Sony. The brand is recognized primarily for its series of home video game consoles, though it also includes handheld devices, online services, and other media products.",
+     "answer": "PlayStation: PlayStation is a video gaming brand owned and produced by Sony Interactive Entertainment (SIE), a subsidiary of Japanese conglomerate Sony. The brand is recognized primarily for its series of home video game consoles, though it also includes handheld devices, online services, and other media products.",
+     "source": "https://en.wikipedia.org/wiki/PlayStation"
+    },
+    {
+     "action": "wikidata_fact",
+     "args": {
+      "entity": [
+       "Sony",
+       "Sony Interactive Entertainment",
+       "Sony Computer Entertainment"
+      ],
+      "property": "founder"
+     },
+     "observation": "Founder of Sony Group (Japanese multinational conglomerate corporation): Masaru Ibuka, Akio Morita (Wikidata)",
+     "answer": "Founder of Sony Group (Japanese multinational conglomerate corporation): Masaru Ibuka, Akio Morita (Wikidata)",
+     "source": "https://www.wikidata.org/wiki/Q41187"
+    },
+    {
+     "action": "FINISH",
+     "args": {},
+     "observation": ""
+    }
+   ],
+   "answer": "Founder of Sony Group (Japanese multinational conglomerate corporation): Masaru Ibuka, Akio Morita (Wikidata)"
+  },
+  {
+   "id": "t063",
+   "split": "test",
+   "category": "multihop",
+   "goal": "What's the weather this weekend in the city where the Sagrada Família is?",
+   "steps": [
+    {
+     "action": "wiki_lookup",
+     "args": {
+      "topic": "Sagrada Família"
+     },
+     "observation": "Sagrada Família (Basilica under construction since 1882 in Barcelona, Spain): Basílica i Temple Expiatori de la Sagrada Família, or simply Sagrada Família, is a Catholic church in the Eixample district of Barcelona, Catalonia, Spain. Designed by the Catalan architect Antoni Gaudí, it is the tallest church in the world. On 7 November 2010, Pope Benedict XVI consecrated the church and proclaimed it a basilica.",
+     "answer": "Sagrada Família: Basílica i Temple Expiatori de la Sagrada Família, or simply Sagrada Família, is a Catholic church in the Eixample district of Barcelona, Catalonia, Spain. Designed by the Catalan architect Antoni Gaudí, it is the tallest church in the world.",
+     "source": "https://en.wikipedia.org/wiki/Sagrada_Fam%C3%ADlia"
+    },
+    {
+     "action": "weather",
+     "args": {
+      "place": "Barcelona",
+      "when": "weekend"
+     },
+     "observation": "Forecast for Barcelona, Catalonia, Spain (this weekend (Saturday and Sunday)): Sat 09-26: fog, 20–26°C, rain chance 0%; Sun 09-27: fog, 19–26°C, rain chance 0%",
+     "answer": "Forecast for Barcelona, Catalonia, Spain (this weekend (Saturday and Sunday)): Sat 09-26: fog, 20–26°C, rain chance 0%; Sun 09-27: fog, 19–26°C, rain chance 0%",
+     "source": "https://open-meteo.com/"
+    },
+    {
+     "action": "FINISH",
+     "args": {},
+     "observation": ""
+    }
+   ],
+   "answer": "Forecast for Barcelona, Catalonia, Spain (this weekend (Saturday and Sunday)): Sat 09-26: fog, 20–26°C, rain chance 0%; Sun 09-27: fog, 19–26°C, rain chance 0%"
+  },
+  {
+   "id": "t064",
+   "split": "dev",
+   "category": "multihop",
+   "goal": "What is the area of the country whose capital is Nairobi?",
+   "steps": [
+    {
+     "action": "wiki_lookup",
+     "args": {
+      "topic": "Nairobi"
+     },
+     "alt": [
+      {
+       "action": "wikidata_fact",
+       "args": {
+        "entity": "Nairobi",
+        "property": "country"
+       }
+      }
+     ],
+     "observation": "Nairobi (Capital and largest city of Kenya): Nairobi, is the capital and largest city of Kenya, located in the south-central part of the country. As of 2026, it has a population of 5.6 million and a metropolitan population of 15.95 million, making it the 8th most populous city in Africa and the 4th most populous metropolitan area. The city goes beyond its borders and has expanded into neighbouring counties, making it the 4th largest metropolitan area in Africa.",
+     "answer": "Nairobi: Nairobi, is the capital and largest city of Kenya, located in the south-central part of the country. As of 2026, it has a population of 5.6 million and a metropolitan population of 15.95 million, making it the 8th most populous city in Africa and the 4th most populous metropolitan area.",
+     "source": "https://en.wikipedia.org/wiki/Nairobi"
+    },
+    {
+     "action": "wikidata_fact",
+     "args": {
+      "entity": "Kenya",
+      "property": "area"
+     },
+     "observation": "Area of Kenya (country in Eastern Africa): 581,309 km² (Wikidata)",
+     "answer": "Area of Kenya (country in Eastern Africa): 581,309 km² (Wikidata)",
+     "source": "https://www.wikidata.org/wiki/Q114"
+    },
+    {
+     "action": "FINISH",
+     "args": {},
+     "observation": ""
+    }
+   ],
+   "answer": "Area of Kenya (country in Eastern Africa): 581,309 km² (Wikidata)"
+  },
+  {
+   "id": "t065",
+   "split": "test",
+   "category": "multihop",
+   "goal": "What is the capital of the country where the Taj Mahal is?",
+   "steps": [
+    {
+     "action": "wiki_lookup",
+     "args": {
+      "topic": "Taj Mahal"
+     },
+     "alt": [
+      {
+       "action": "wikidata_fact",
+       "args": {
+        "entity": "Taj Mahal",
+        "property": "country"
+       }
+      }
+     ],
+     "observation": "Taj Mahal (Marble mausoleum in Agra, India): The Taj Mahal is an ivory-white marble mausoleum on the right bank of the river Yamuna in Agra, Uttar Pradesh, India. It was commissioned in 1631 by the fifth Mughal emperor, Shah Jahan, to house the tomb of his late wife, Mumtaz Mahal; it also houses the tomb of Shah Jahan himself. The tomb is the centrepiece of a 17-hectare (42-acre) complex, which includes a mosque and a guest house, and is set in formal gardens bounded on three sides by a crenellated wall.",
+     "answer": "Taj Mahal: The Taj Mahal is an ivory-white marble mausoleum on the right bank of the river Yamuna in Agra, Uttar Pradesh, India. It was commissioned in 1631 by the fifth Mughal emperor, Shah Jahan, to house the tomb of his late wife, Mumtaz Mahal; it also houses the tomb of Shah Jahan himself.",
+     "source": "https://en.wikipedia.org/wiki/Taj_Mahal"
+    },
+    {
+     "action": "wikidata_fact",
+     "args": {
+      "entity": "India",
+      "property": "capital"
+     },
+     "observation": "Capital city of India (country in South Asia): New Delhi (Wikidata)",
+     "answer": "Capital city of India (country in South Asia): New Delhi (Wikidata)",
+     "source": "https://www.wikidata.org/wiki/Q668"
+    },
+    {
+     "action": "FINISH",
+     "args": {},
+     "observation": ""
+    }
+   ],
+   "answer": "Capital city of India (country in South Asia): New Delhi (Wikidata)"
+  },
+  {
+   "id": "t066",
+   "split": "test",
+   "category": "multihop",
+   "goal": "Weather tomorrow in the city where the Golden Gate Bridge is",
+   "steps": [
+    {
+     "action": "wiki_lookup",
+     "args": {
+      "topic": "Golden Gate Bridge"
+     },
+     "observation": "Golden Gate Bridge (Bridge in the San Francisco Bay Area): The Golden Gate Bridge is a suspension bridge spanning the Golden Gate, the one-mile-wide (1.6 km) strait connecting San Francisco Bay and the Pacific Ocean in California, United States. The structure links San Francisco—the northern tip of the San Francisco Peninsula—to Marin County, carrying both U.S. Route 101 and California State Route 1 across the strait.",
+     "answer": "Golden Gate Bridge: The Golden Gate Bridge is a suspension bridge spanning the Golden Gate, the one-mile-wide (1.6 km) strait connecting San Francisco Bay and the Pacific Ocean in California, United States. The structure links San Francisco—the northern tip of the San Francisco Peninsula—to Marin County, carrying both U.S.",
+     "source": "https://en.wikipedia.org/wiki/Golden_Gate_Bridge"
+    },
+    {
+     "action": "weather",
+     "args": {
+      "place": "San Francisco",
+      "when": "tomorrow"
+     },
+     "observation": "Forecast for San Francisco, California, United States (tomorrow): Fri 09-25: overcast, 14–22°C, rain chance 1%",
+     "answer": "Forecast for San Francisco, California, United States (tomorrow): Fri 09-25: overcast, 14–22°C, rain chance 1%",
+     "source": "https://open-meteo.com/"
+    },
+    {
+     "action": "FINISH",
+     "args": {},
+     "observation": ""
+    }
+   ],
+   "answer": "Forecast for San Francisco, California, United States (tomorrow): Fri 09-25: overcast, 14–22°C, rain chance 1%"
+  },
+  {
+   "id": "t067",
+   "split": "dev",
+   "category": "multihop",
+   "goal": "What is the height of the Eiffel Tower in feet?",
+   "steps": [
+    {
+     "action": "wikidata_fact",
+     "args": {
+      "entity": "Eiffel Tower",
+      "property": "height"
+     },
+     "observation": "Height of Eiffel Tower (tower located on the Champ de Mars in Paris, France): 330 m (Wikidata)",
+     "answer": "Height of Eiffel Tower (tower located on the Champ de Mars in Paris, France): 330 m (Wikidata)",
+     "source": "https://www.wikidata.org/wiki/Q243"
+    },
+    {
+     "action": "unit_convert",
+     "args": {
+      "quantity": [
+       "330 m",
+       "330 meters",
+       "330.0 m",
+       "324 m",
+       "300 m",
+       "312 m"
+      ],
+      "to_unit": "ft"
+     },
+     "observation": "330 m = 1,082.68 feet",
+     "answer": "330 m = 1,082.68 feet"
+    },
+    {
+     "action": "FINISH",
+     "args": {},
+     "observation": ""
+    }
+   ],
+   "answer": "330 m = 1,082.68 feet"
+  },
+  {
+   "id": "t068",
+   "split": "test",
+   "category": "multihop",
+   "goal": "What's the weather for the next few days in the capital of Kenya?",
+   "steps": [
+    {
+     "action": "wikidata_fact",
+     "args": {
+      "entity": "Kenya",
+      "property": "capital"
+     },
+     "observation": "Capital city of Kenya (country in Eastern Africa): Nairobi (Wikidata)",
+     "answer": "Capital city of Kenya (country in Eastern Africa): Nairobi (Wikidata)",
+     "source": "https://www.wikidata.org/wiki/Q114"
+    },
+    {
+     "action": "weather",
+     "args": {
+      "place": "Nairobi",
+      "when": "week"
+     },
+     "observation": "Forecast for Nairobi, Nairobi County, Kenya (the next few days): Thu 09-24: overcast, 13–27°C, rain chance 6%; Fri 09-25: overcast, 13–28°C, rain chance 12%; Sat 09-26: overcast, 13–29°C, rain chance 2%",
+     "answer": "Forecast for Nairobi, Nairobi County, Kenya (the next few days): Thu 09-24: overcast, 13–27°C, rain chance 6%; Fri 09-25: overcast, 13–28°C, rain chance 12%; Sat 09-26: overcast, 13–29°C, rain chance 2%",
+     "source": "https://open-meteo.com/"
+    },
+    {
+     "action": "FINISH",
+     "args": {},
+     "observation": ""
+    }
+   ],
+   "answer": "Forecast for Nairobi, Nairobi County, Kenya (the next few days): Thu 09-24: overcast, 13–27°C, rain chance 6%; Fri 09-25: overcast, 13–28°C, rain chance 12%; Sat 09-26: overcast, 13–29°C, rain chance 2%"
+  },
+  {
+   "id": "t069",
+   "split": "test",
+   "category": "multihop",
+   "goal": "Who is the head of government of the country where the Acropolis is?",
+   "steps": [
+    {
+     "action": "wiki_lookup",
+     "args": {
+      "topic": "Acropolis of Athens"
+     },
+     "alt": [
+      {
+       "action": "wikidata_fact",
+       "args": {
+        "entity": "Acropolis of Athens",
+        "property": "country"
+       }
+      },
+      {
+       "action": "wikidata_fact",
+       "args": {
+        "entity": "Acropolis",
+        "property": "country"
+       }
+      },
+      {
+       "action": "wiki_lookup",
+       "args": {
+        "topic": "Acropolis"
+       }
+      }
+     ],
+     "observation": "Acropolis of Athens (Ancient citadel above the city of Athens): The Acropolis of Athens is an ancient citadel located on a rocky outcrop above the city of Athens, Greece, and contains the remains of several ancient buildings of great architectural and historical significance, the most famous being the Parthenon. The word Acropolis is from Greek ἄκρον (akron) 'highest point, extremity' and πόλις (polis) 'city'. The term acropolis is generic and there are many other acropoleis in Greece.",
+     "answer": "Acropolis of Athens: The Acropolis of Athens is an ancient citadel located on a rocky outcrop above the city of Athens, Greece, and contains the remains of several ancient buildings of great architectural and historical significance, the most famous being the Parthenon. The word Acropolis is from Greek ἄκρον (akron) 'highest point, extremity' and πόλις (polis) 'city'.",
+     "source": "https://en.wikipedia.org/wiki/Acropolis_of_Athens"
+    },
+    {
+     "action": "wikidata_fact",
+     "args": {
+      "entity": "Greece",
+      "property": "head_of_government"
+     },
+     "observation": "Head of government of Greece (country in Southeast Europe): Kyriakos Mitsotakis (Wikidata)",
+     "answer": "Head of government of Greece (country in Southeast Europe): Kyriakos Mitsotakis (Wikidata)",
+     "source": "https://www.wikidata.org/wiki/Q41"
+    },
+    {
+     "action": "FINISH",
+     "args": {},
+     "observation": ""
+    }
+   ],
+   "answer": "Head of government of Greece (country in Southeast Europe): Kyriakos Mitsotakis (Wikidata)"
+  },
+  {
+   "id": "t070",
+   "split": "dev",
+   "category": "multihop",
+   "goal": "What is 15% of the population of Iceland?",
+   "steps": [
+    {
+     "action": "wikidata_fact",
+     "args": {
+      "entity": "Iceland",
+      "property": "population"
+     },
+     "observation": "Population of Iceland (Nordic island country in the North Atlantic Ocean): 364,260 (Wikidata)",
+     "answer": "Population of Iceland (Nordic island country in the North Atlantic Ocean): 364,260 (Wikidata)",
+     "source": "https://www.wikidata.org/wiki/Q189"
+    },
+    {
+     "action": "calculator",
+     "args": {
+      "expression": [
+       "15% of 364,260",
+       "0.15 * 364260"
+      ]
+     },
+     "observation": "15% of 364,260 = 54,639",
+     "answer": "15% of 364,260 = 54,639"
+    },
+    {
+     "action": "FINISH",
+     "args": {},
+     "observation": ""
+    }
+   ],
+   "answer": "15% of 364,260 = 54,639"
+  },
+  {
+   "id": "t071",
+   "split": "test",
+   "category": "multihop",
+   "goal": "Tell me about the city where the Brandenburg Gate stands",
+   "steps": [
+    {
+     "action": "wiki_lookup",
+     "args": {
+      "topic": "Brandenburg Gate"
+     },
+     "observation": "Brandenburg Gate (Triumphal arch and gate in Berlin, Germany): The Brandenburg Gate is an 18th-century neoclassical monument in Berlin, Germany. One of the best-known landmarks of the country, it was erected on the site of a former city gate that marked the start of the road from Berlin to Brandenburg an der Havel, the former capital of the Margraviate of Brandenburg. The current structure was built from 1788 to 1791 by orders of King Frederick William II of Prussia, based on designs by the royal architect Carl Gotthard Langhans.",
+     "answer": "Brandenburg Gate: The Brandenburg Gate is an 18th-century neoclassical monument in Berlin, Germany. One of the best-known landmarks of the country, it was erected on the site of a former city gate that marked the start of the road from Berlin to Brandenburg an der Havel, the former capital of the Margraviate of Brandenburg.",
+     "source": "https://en.wikipedia.org/wiki/Brandenburg_Gate"
+    },
+    {
+     "action": "wiki_lookup",
+     "args": {
+      "topic": "Berlin"
+     },
+     "observation": "Berlin (Capital and largest city of Germany): Berlin is the capital and largest city of Germany. With 3.7 million inhabitants, it has the highest population within its city limits of any city in the European Union (EU). The metropolis is also one of the states of Germany, being the third-smallest state in the country by area.",
+     "answer": "Berlin: Berlin is the capital and largest city of Germany. With 3.7 million inhabitants, it has the highest population within its city limits of any city in the European Union (EU).",
+     "source": "https://en.wikipedia.org/wiki/Berlin"
+    },
+    {
+     "action": "FINISH",
+     "args": {},
+     "observation": ""
+    }
+   ],
+   "answer": "Berlin: Berlin is the capital and largest city of Germany. With 3.7 million inhabitants, it has the highest population within its city limits of any city in the European Union (EU)."
+  },
+  {
+   "id": "t072",
+   "split": "test",
+   "category": "memory",
+   "goal": "Remember my book club is on Thursdays",
+   "steps": [
+    {
+     "action": "note_save",
+     "args": {
+      "text": "my book club is on Thursdays"
+     },
+     "observation": "Saved the note: \"my book club is on Thursdays\"",
+     "answer": "Saved: \"my book club is on Thursdays\""
+    },
+    {
+     "action": "FINISH",
+     "args": {},
+     "observation": ""
+    }
+   ],
+   "answer": "Saved: \"my book club is on Thursdays\""
+  },
+  {
+   "id": "t073",
+   "split": "dev",
+   "category": "memory",
+   "goal": "Note that the spare key is under the blue pot",
+   "steps": [
+    {
+     "action": "note_save",
+     "args": {
+      "text": "the spare key is under the blue pot"
+     },
+     "observation": "Saved the note: \"the spare key is under the blue pot\"",
+     "answer": "Saved: \"the spare key is under the blue pot\""
+    },
+    {
+     "action": "FINISH",
+     "args": {},
+     "observation": ""
+    }
+   ],
+   "answer": "Saved: \"the spare key is under the blue pot\""
+  },
+  {
+   "id": "t074",
+   "split": "test",
+   "category": "memory",
+   "goal": "Remember that Sam's flight lands at 6:40pm on Friday",
+   "steps": [
+    {
+     "action": "note_save",
+     "args": {
+      "text": "Sam's flight lands at 6:40pm on Friday"
+     },
+     "observation": "Saved the note: \"Sam's flight lands at 6:40pm on Friday\"",
+     "answer": "Saved: \"Sam's flight lands at 6:40pm on Friday\""
+    },
+    {
+     "action": "FINISH",
+     "args": {},
+     "observation": ""
+    }
+   ],
+   "answer": "Saved: \"Sam's flight lands at 6:40pm on Friday\""
+  },
+  {
+   "id": "t075",
+   "split": "test",
+   "category": "memory",
+   "goal": "Please remember that my passport expires in 2029",
+   "steps": [
+    {
+     "action": "note_save",
+     "args": {
+      "text": "my passport expires in 2029"
+     },
+     "observation": "Saved the note: \"my passport expires in 2029\"",
+     "answer": "Saved: \"my passport expires in 2029\""
+    },
+    {
+     "action": "FINISH",
+     "args": {},
+     "observation": ""
+    }
+   ],
+   "answer": "Saved: \"my passport expires in 2029\""
+  },
+  {
+   "id": "t076",
+   "split": "dev",
+   "category": "memory",
+   "goal": "Make a note that the plumber is coming on Tuesday",
+   "steps": [
+    {
+     "action": "note_save",
+     "args": {
+      "text": "the plumber is coming on Tuesday"
+     },
+     "observation": "Saved the note: \"the plumber is coming on Tuesday\"",
+     "answer": "Saved: \"the plumber is coming on Tuesday\""
+    },
+    {
+     "action": "FINISH",
+     "args": {},
+     "observation": ""
+    }
+   ],
+   "answer": "Saved: \"the plumber is coming on Tuesday\""
+  },
+  {
+   "id": "t077",
+   "split": "test",
+   "category": "memory",
+   "goal": "When does my book club meet?",
+   "steps": [
+    {
+     "action": "note_search",
+     "args": {
+      "query": "book club"
+     },
+     "observation": "Notes about \"book club\": \"My book club meets on Thursdays at 7pm\"",
+     "answer": "From your notes: \"My book club meets on Thursdays at 7pm\""
+    },
+    {
+     "action": "FINISH",
+     "args": {},
+     "observation": ""
+    }
+   ],
+   "answer": "From your notes: \"My book club meets on Thursdays at 7pm\""
+  },
+  {
+   "id": "t078",
+   "split": "test",
+   "category": "memory",
+   "goal": "What did I save about the cabin wifi?",
+   "steps": [
+    {
+     "action": "note_search",
+     "args": {
+      "query": [
+       "cabin wifi",
+       "cabin wifi password",
+       "wifi"
+      ]
+     },
+     "observation": "Notes about \"cabin wifi\": \"The cabin wifi password is taped to the fridge\"",
+     "answer": "From your notes: \"The cabin wifi password is taped to the fridge\""
+    },
+    {
+     "action": "FINISH",
+     "args": {},
+     "observation": ""
+    }
+   ],
+   "answer": "From your notes: \"The cabin wifi password is taped to the fridge\""
+  },
+  {
+   "id": "t079",
+   "split": "dev",
+   "category": "memory",
+   "goal": "When is my dentist appointment?",
+   "steps": [
+    {
+     "action": "note_search",
+     "args": {
+      "query": [
+       "dentist appointment",
+       "dentist"
+      ]
+     },
+     "observation": "Notes about \"dentist appointment\": \"Dentist appointment on October 3 at 9am\"",
+     "answer": "From your notes: \"Dentist appointment on October 3 at 9am\""
+    },
+    {
+     "action": "FINISH",
+     "args": {},
+     "observation": ""
+    }
+   ],
+   "answer": "From your notes: \"Dentist appointment on October 3 at 9am\""
+  },
+  {
+   "id": "t080",
+   "split": "test",
+   "category": "memory",
+   "goal": "What's my gym locker code?",
+   "steps": [
+    {
+     "action": "note_search",
+     "args": {
+      "query": [
+       "gym locker code",
+       "gym locker",
+       "locker code"
+      ]
+     },
+     "observation": "Notes about \"gym locker code\": \"Gym locker code is 4417\"",
+     "answer": "From your notes: \"Gym locker code is 4417\""
+    },
+    {
+     "action": "FINISH",
+     "args": {},
+     "observation": ""
+    }
+   ],
+   "answer": "From your notes: \"Gym locker code is 4417\""
+  },
+  {
+   "id": "t081",
+   "split": "test",
+   "category": "memory",
+   "goal": "When is Sam's birthday?",
+   "steps": [
+    {
+     "action": "note_search",
+     "args": {
+      "query": [
+       "birthday",
+       "Sam's birthday",
+       "Sam"
+      ]
+     },
+     "observation": "Notes about \"birthday\": \"Sam's birthday is June 12\"",
+     "answer": "From your notes: \"Sam's birthday is June 12\""
+    },
+    {
+     "action": "FINISH",
+     "args": {},
+     "observation": ""
+    }
+   ],
+   "answer": "From your notes: \"Sam's birthday is June 12\""
+  },
+  {
+   "id": "t082",
+   "split": "dev",
+   "category": "memory",
+   "goal": "Where is my parking spot at work?",
+   "steps": [
+    {
+     "action": "note_search",
+     "args": {
+      "query": [
+       "parking spot",
+       "parking spot at work",
+       "parking"
+      ]
+     },
+     "observation": "Notes about \"parking spot\": \"Parking spot at work is B-14\"",
+     "answer": "From your notes: \"Parking spot at work is B-14\""
+    },
+    {
+     "action": "FINISH",
+     "args": {},
+     "observation": ""
+    }
+   ],
+   "answer": "From your notes: \"Parking spot at work is B-14\""
+  },
+  {
+   "id": "t083",
+   "split": "test",
+   "category": "memory",
+   "goal": "Check my notes for the car wash coupon",
+   "steps": [
+    {
+     "action": "note_search",
+     "args": {
+      "query": [
+       "car wash coupon",
+       "car wash"
+      ]
+     },
+     "observation": "Notes about \"car wash coupon\": \"Car wash coupon expires at the end of the month\"",
+     "answer": "From your notes: \"Car wash coupon expires at the end of the month\""
+    },
+    {
+     "action": "FINISH",
+     "args": {},
+     "observation": ""
+    }
+   ],
+   "answer": "From your notes: \"Car wash coupon expires at the end of the month\""
+  },
+  {
+   "id": "t084",
+   "split": "test",
+   "category": "rewrite",
+   "goal": "How tall is that iron tower in Paris?",
+   "steps": [
+    {
+     "action": "wikidata_fact",
+     "args": {
+      "entity": "Eiffel Tower",
+      "property": "height"
+     },
+     "observation": "Height of Eiffel Tower (tower located on the Champ de Mars in Paris, France): 330 m (Wikidata)",
+     "answer": "Height of Eiffel Tower (tower located on the Champ de Mars in Paris, France): 330 m (Wikidata)",
+     "source": "https://www.wikidata.org/wiki/Q243"
+    },
+    {
+     "action": "FINISH",
+     "args": {},
+     "observation": ""
+    }
+   ],
+   "answer": "Height of Eiffel Tower (tower located on the Champ de Mars in Paris, France): 330 m (Wikidata)"
+  },
+  {
+   "id": "t085",
+   "split": "dev",
+   "category": "rewrite",
+   "goal": "What's the population of the Big Apple?",
+   "steps": [
+    {
+     "action": "wikidata_fact",
+     "args": {
+      "entity": [
+       "New York City",
+       "New York"
+      ],
+      "property": "population"
+     },
+     "observation": "Population of New York City (most populous city in the United States): 8,804,190 (Wikidata)",
+     "answer": "Population of New York City (most populous city in the United States): 8,804,190 (Wikidata)",
+     "source": "https://www.wikidata.org/wiki/Q60"
+    },
+    {
+     "action": "FINISH",
+     "args": {},
+     "observation": ""
+    }
+   ],
+   "answer": "Population of New York City (most populous city in the United States): 8,804,190 (Wikidata)"
+  },
+  {
+   "id": "t086",
+   "split": "test",
+   "category": "rewrite",
+   "goal": "Weather tomorrow in the Windy City",
+   "steps": [
+    {
+     "action": "weather",
+     "args": {
+      "place": "Chicago",
+      "when": "tomorrow"
+     },
+     "observation": "Forecast for Chicago, Illinois, United States (tomorrow): Fri 09-25: overcast, 14–18°C, rain chance 3%",
+     "answer": "Forecast for Chicago, Illinois, United States (tomorrow): Fri 09-25: overcast, 14–18°C, rain chance 3%",
+     "source": "https://open-meteo.com/"
+    },
+    {
+     "action": "FINISH",
+     "args": {},
+     "observation": ""
+    }
+   ],
+   "answer": "Forecast for Chicago, Illinois, United States (tomorrow): Fri 09-25: overcast, 14–18°C, rain chance 3%"
+  },
+  {
+   "id": "t087",
+   "split": "test",
+   "category": "rewrite",
+   "goal": "What's the capital of the land down under?",
+   "steps": [
+    {
+     "action": "wikidata_fact",
+     "args": {
+      "entity": "Australia",
+      "property": "capital"
+     },
+     "observation": "Capital city of Australia (country in Oceania): Canberra (Wikidata)",
+     "answer": "Capital city of Australia (country in Oceania): Canberra (Wikidata)",
+     "source": "https://www.wikidata.org/wiki/Q408"
+    },
+    {
+     "action": "FINISH",
+     "args": {},
+     "observation": ""
+    }
+   ],
+   "answer": "Capital city of Australia (country in Oceania): Canberra (Wikidata)"
+  },
+  {
+   "id": "t088",
+   "split": "dev",
+   "category": "rewrite",
+   "goal": "Weather this weekend in the City of Light",
+   "steps": [
+    {
+     "action": "weather",
+     "args": {
+      "place": "Paris",
+      "when": "weekend"
+     },
+     "observation": "Forecast for Paris, Île-de-France Region, France (this weekend (Saturday and Sunday)): Sat 09-26: overcast, 16–24°C, rain chance 0%; Sun 09-27: overcast, 14–27°C, rain chance 0%",
+     "answer": "Forecast for Paris, Île-de-France Region, France (this weekend (Saturday and Sunday)): Sat 09-26: overcast, 16–24°C, rain chance 0%; Sun 09-27: overcast, 14–27°C, rain chance 0%",
+     "source": "https://open-meteo.com/"
+    },
+    {
+     "action": "FINISH",
+     "args": {},
+     "observation": ""
+    }
+   ],
+   "answer": "Forecast for Paris, Île-de-France Region, France (this weekend (Saturday and Sunday)): Sat 09-26: overcast, 16–24°C, rain chance 0%; Sun 09-27: overcast, 14–27°C, rain chance 0%"
+  },
+  {
+   "id": "t089",
+   "split": "test",
+   "category": "rewrite",
+   "goal": "How many people live on the Emerald Isle?",
+   "steps": [
+    {
+     "action": "wikidata_fact",
+     "args": {
+      "entity": [
+       "Ireland",
+       "Republic of Ireland"
+      ],
+      "property": "population"
+     },
+     "observation": "Population of Ireland (country in Northwestern Europe): 5,149,139 (Wikidata)",
+     "answer": "Population of Ireland (country in Northwestern Europe): 5,149,139 (Wikidata)",
+     "source": "https://www.wikidata.org/wiki/Q27"
+    },
+    {
+     "action": "FINISH",
+     "args": {},
+     "observation": ""
+    }
+   ],
+   "answer": "Population of Ireland (country in Northwestern Europe): 5,149,139 (Wikidata)"
+  },
+  {
+   "id": "t090",
+   "split": "test",
+   "category": "rewrite",
+   "goal": "What currency does the Land of the Rising Sun use?",
+   "steps": [
+    {
+     "action": "wikidata_fact",
+     "args": {
+      "entity": "Japan",
+      "property": "currency"
+     },
+     "observation": "Currency of Japan (island country in East Asia): yen (Wikidata)",
+     "answer": "Currency of Japan (island country in East Asia): yen (Wikidata)",
+     "source": "https://www.wikidata.org/wiki/Q17"
+    },
+    {
+     "action": "FINISH",
+     "args": {},
+     "observation": ""
+    }
+   ],
+   "answer": "Currency of Japan (island country in East Asia): yen (Wikidata)"
+  },
+  {
+   "id": "t091",
+   "split": "dev",
+   "category": "rewrite",
+   "goal": "Tell me about the scientist who discovered penicillin",
+   "steps": [
+    {
+     "action": "wiki_lookup",
+     "args": {
+      "topic": "Alexander Fleming"
+     },
+     "alt": [
+      {
+       "action": "wiki_lookup",
+       "args": {
+        "topic": "penicillin"
+       }
+      }
+     ],
+     "observation": "Alexander Fleming (Scottish physician and microbiologist (1881–1955)): Sir Alexander Fleming was a Scottish physician and microbiologist. He shared the 1945 Nobel Prize in Physiology or Medicine with Howard Florey and Ernst Chain \"for the discovery of penicillin and its curative effect in various infectious diseases\". This was the first antibiotic substance discovered.",
+     "answer": "Alexander Fleming: Sir Alexander Fleming was a Scottish physician and microbiologist. He shared the 1945 Nobel Prize in Physiology or Medicine with Howard Florey and Ernst Chain \"for the discovery of penicillin and its curative effect in various infectious diseases\".",
+     "source": "https://en.wikipedia.org/wiki/Alexander_Fleming"
+    },
+    {
+     "action": "FINISH",
+     "args": {},
+     "observation": ""
+    }
+   ],
+   "answer": "Alexander Fleming: Sir Alexander Fleming was a Scottish physician and microbiologist. He shared the 1945 Nobel Prize in Physiology or Medicine with Howard Florey and Ernst Chain \"for the discovery of penicillin and its curative effect in various infectious diseases\"."
+  },
+  {
+   "id": "t092",
+   "split": "test",
+   "category": "ambiguous",
+   "goal": "Weather in Springfield",
+   "steps": [
+    {
+     "action": "ask_user",
+     "args": {},
+     "observation": "The user answered: \"Springfield, Illinois\"",
+     "answer": "You said: \"Springfield, Illinois\""
+    },
+    {
+     "action": "weather",
+     "args": {
+      "place": [
+       "Springfield, Illinois",
+       "Springfield"
+      ],
+      "when": "today"
+     },
+     "observation": "Forecast for Springfield, Illinois, United States (today): Thu 09-24: overcast, 16–21°C, rain chance 0%",
+     "answer": "Forecast for Springfield, Illinois, United States (today): Thu 09-24: overcast, 16–21°C, rain chance 0%",
+     "source": "https://open-meteo.com/"
+    },
+    {
+     "action": "FINISH",
+     "args": {},
+     "observation": ""
+    }
+   ],
+   "answer": "Forecast for Springfield, Illinois, United States (today): Thu 09-24: overcast, 16–21°C, rain chance 0%"
+  },
+  {
+   "id": "t093",
+   "split": "test",
+   "category": "ambiguous",
+   "goal": "What's the weather like there tomorrow?",
+   "steps": [
+    {
+     "action": "ask_user",
+     "args": {},
+     "observation": "The user answered: \"Oslo\"",
+     "answer": "You said: \"Oslo\""
+    },
+    {
+     "action": "weather",
+     "args": {
+      "place": "Oslo",
+      "when": "tomorrow"
+     },
+     "observation": "Forecast for Oslo, Norway (tomorrow): Fri 09-25: light drizzle, 9–17°C, rain chance 0%",
+     "answer": "Forecast for Oslo, Norway (tomorrow): Fri 09-25: light drizzle, 9–17°C, rain chance 0%",
+     "source": "https://open-meteo.com/"
+    },
+    {
+     "action": "FINISH",
+     "args": {},
+     "observation": ""
+    }
+   ],
+   "answer": "Forecast for Oslo, Norway (tomorrow): Fri 09-25: light drizzle, 9–17°C, rain chance 0%"
+  },
+  {
+   "id": "t094",
+   "split": "dev",
+   "category": "ambiguous",
+   "goal": "Convert 20 degrees",
+   "steps": [
+    {
+     "action": "ask_user",
+     "args": {},
+     "observation": "The user answered: \"20 degrees Fahrenheit to Celsius\"",
+     "answer": "You said: \"20 degrees Fahrenheit to Celsius\""
+    },
+    {
+     "action": "unit_convert",
+     "args": {
+      "quantity": [
+       "20 degrees Fahrenheit",
+       "20 °F",
+       "20°F"
+      ],
+      "to_unit": "C"
+     },
+     "observation": "20 degrees Fahrenheit = -6.667 degrees Celsius",
+     "answer": "20 degrees Fahrenheit = -6.667 degrees Celsius"
+    },
+    {
+     "action": "FINISH",
+     "args": {},
+     "observation": ""
+    }
+   ],
+   "answer": "20 degrees Fahrenheit = -6.667 degrees Celsius"
+  },
+  {
+   "id": "t095",
+   "split": "test",
+   "category": "ambiguous",
+   "goal": "Send a message",
+   "steps": [
+    {
+     "action": "ask_user",
+     "args": {},
+     "observation": "The user answered: \"Tell Priya I'm running late\"",
+     "answer": "You said: \"Tell Priya I'm running late\""
+    },
+    {
+     "action": "send_message",
+     "args": {
+      "to": "Priya",
+      "text": [
+       "I'm running late",
+       "running late"
+      ]
+     },
+     "observation": "Message to Priya ready: \"I'm running late\" (demo: nothing was actually sent)",
+     "answer": "Message to Priya ready: \"I'm running late\" (demo: nothing was actually sent)"
+    },
+    {
+     "action": "FINISH",
+     "args": {},
+     "observation": ""
+    }
+   ],
+   "answer": "Message to Priya ready: \"I'm running late\" (demo: nothing was actually sent)"
+  },
+  {
+   "id": "t096",
+   "split": "test",
+   "category": "ambiguous",
+   "goal": "What's the population?",
+   "steps": [
+    {
+     "action": "ask_user",
+     "args": {},
+     "observation": "The user answered: \"Of Portugal\"",
+     "answer": "You said: \"Of Portugal\""
+    },
+    {
+     "action": "wikidata_fact",
+     "args": {
+      "entity": "Portugal",
+      "property": "population"
+     },
+     "observation": "Population of Portugal (country in Southwestern Europe): 10,347,892 (Wikidata)",
+     "answer": "Population of Portugal (country in Southwestern Europe): 10,347,892 (Wikidata)",
+     "source": "https://www.wikidata.org/wiki/Q45"
+    },
+    {
+     "action": "FINISH",
+     "args": {},
+     "observation": ""
+    }
+   ],
+   "answer": "Population of Portugal (country in Southwestern Europe): 10,347,892 (Wikidata)"
+  },
+  {
+   "id": "t097",
+   "split": "dev",
+   "category": "ambiguous",
+   "goal": "Look it up for me",
+   "steps": [
+    {
+     "action": "ask_user",
+     "args": {},
+     "observation": "The user answered: \"The Rosetta Stone\"",
+     "answer": "You said: \"The Rosetta Stone\""
+    },
+    {
+     "action": "wiki_lookup",
+     "args": {
+      "topic": "Rosetta Stone"
+     },
+     "observation": "Rosetta Stone (Egyptian stele with three versions of a 196 BC decree): The Rosetta Stone is a stele of granodiorite inscribed with three versions of a decree issued in 196 BC during the Ptolemaic dynasty of Egypt, on behalf of King Ptolemy V Epiphanes. The top and middle texts are in Ancient Egyptian using hieroglyphic and Demotic scripts, respectively, while the bottom is in Ancient Greek. The decree has only minor differences across the three versions, making the Rosetta Stone key to deciphering the Egyptian scripts.",
+     "answer": "Rosetta Stone: The Rosetta Stone is a stele of granodiorite inscribed with three versions of a decree issued in 196 BC during the Ptolemaic dynasty of Egypt, on behalf of King Ptolemy V Epiphanes. The top and middle texts are in Ancient Egyptian using hieroglyphic and Demotic scripts, respectively, while the bottom is in Ancient Greek.",
+     "source": "https://en.wikipedia.org/wiki/Rosetta_Stone"
+    },
+    {
+     "action": "FINISH",
+     "args": {},
+     "observation": ""
+    }
+   ],
+   "answer": "Rosetta Stone: The Rosetta Stone is a stele of granodiorite inscribed with three versions of a decree issued in 196 BC during the Ptolemaic dynasty of Egypt, on behalf of King Ptolemy V Epiphanes. The top and middle texts are in Ancient Egyptian using hieroglyphic and Demotic scripts, respectively, while the bottom is in Ancient Greek."
+  },
+  {
+   "id": "t098",
+   "split": "test",
+   "category": "risky",
+   "goal": "Delete all my notes about the dentist",
+   "steps": [
+    {
+     "action": "note_delete",
+     "args": {
+      "query": [
+       "dentist",
+       "dentist appointment"
+      ]
+     },
+     "observation": "Deleted 1 note: \"Dentist appointment on October 3 at 9am\"",
+     "answer": "Deleted 1 note: \"Dentist appointment on October 3 at 9am\""
+    },
+    {
+     "action": "FINISH",
+     "args": {},
+     "observation": ""
+    }
+   ],
+   "answer": "Deleted 1 note: \"Dentist appointment on October 3 at 9am\""
+  },
+  {
+   "id": "t099",
+   "split": "test",
+   "category": "risky",
+   "goal": "Delete all my notes",
+   "steps": [
+    {
+     "action": "note_delete",
+     "args": {
+      "query": "all notes"
+     },
+     "observation": "Deleted 7 notes: \"My book club meets on Thursdays at 7pm\"; \"Dentist appointment on October 3 at 9am\"; \"The cabin wifi password is taped to the fridge\"; \"Sam's birthday is June 12\"; \"Gym locker code is 4417\"; \"Car wash coupon expires at the end of the month\"; \"Parking spot at work is B-14\"",
+     "answer": "Deleted 7 notes: \"My book club meets on Thursdays at 7pm\"; \"Dentist appointment on October 3 at 9am\"; \"The cabin wifi password is taped to the fridge\"; \"Sam's birthday is June 12\"; \"Gym locker code is 4417\"; \"Car wash coupon expires at the end of the month\"; \"Parking spot at work is B-14\""
+    },
+    {
+     "action": "FINISH",
+     "args": {},
+     "observation": ""
+    }
+   ],
+   "answer": "Deleted 7 notes: \"My book club meets on Thursdays at 7pm\"; \"Dentist appointment on October 3 at 9am\"; \"The cabin wifi password is taped to the fridge\"; \"Sam's birthday is June 12\"; \"Gym locker code is 4417\"; \"Car wash coupon expires at the end of the month\"; \"Parking spot at work is B-14\""
+  },
+  {
+   "id": "t100",
+   "split": "dev",
+   "category": "risky",
+   "goal": "Send Priya a message saying I'll be late",
+   "steps": [
+    {
+     "action": "send_message",
+     "args": {
+      "to": "Priya",
+      "text": "I'll be late"
+     },
+     "observation": "Message to Priya ready: \"I'll be late\" (demo: nothing was actually sent)",
+     "answer": "Message to Priya ready: \"I'll be late\" (demo: nothing was actually sent)"
+    },
+    {
+     "action": "FINISH",
+     "args": {},
+     "observation": ""
+    }
+   ],
+   "answer": "Message to Priya ready: \"I'll be late\" (demo: nothing was actually sent)"
+  },
+  {
+   "id": "t101",
+   "split": "test",
+   "category": "risky",
+   "goal": "Email Tom that the meeting moved to 3pm",
+   "steps": [
+    {
+     "action": "send_message",
+     "args": {
+      "to": "Tom",
+      "text": "the meeting moved to 3pm"
+     },
+     "observation": "Message to Tom ready: \"the meeting moved to 3pm\" (demo: nothing was actually sent)",
+     "answer": "Message to Tom ready: \"the meeting moved to 3pm\" (demo: nothing was actually sent)"
+    },
+    {
+     "action": "FINISH",
+     "args": {},
+     "observation": ""
+    }
+   ],
+   "answer": "Message to Tom ready: \"the meeting moved to 3pm\" (demo: nothing was actually sent)"
+  },
+  {
+   "id": "t102",
+   "split": "test",
+   "category": "risky",
+   "goal": "Text Maria that dinner is at 7",
+   "steps": [
+    {
+     "action": "send_message",
+     "args": {
+      "to": "Maria",
+      "text": "dinner is at 7"
+     },
+     "observation": "Message to Maria ready: \"dinner is at 7\" (demo: nothing was actually sent)",
+     "answer": "Message to Maria ready: \"dinner is at 7\" (demo: nothing was actually sent)"
+    },
+    {
+     "action": "FINISH",
+     "args": {},
+     "observation": ""
+    }
+   ],
+   "answer": "Message to Maria ready: \"dinner is at 7\" (demo: nothing was actually sent)"
+  },
+  {
+   "id": "t103",
+   "split": "dev",
+   "category": "risky",
+   "goal": "Remove my note about the gym",
+   "steps": [
+    {
+     "action": "note_delete",
+     "args": {
+      "query": [
+       "gym",
+       "gym locker code"
+      ]
+     },
+     "observation": "Deleted 1 note: \"Gym locker code is 4417\"",
+     "answer": "Deleted 1 note: \"Gym locker code is 4417\""
+    },
+    {
+     "action": "FINISH",
+     "args": {},
+     "observation": ""
+    }
+   ],
+   "answer": "Deleted 1 note: \"Gym locker code is 4417\""
+  },
+  {
+   "id": "t104",
+   "split": "test",
+   "category": "risky",
+   "goal": "Tell Alex that I found his keys",
+   "steps": [
+    {
+     "action": "send_message",
+     "args": {
+      "to": "Alex",
+      "text": "I found his keys"
+     },
+     "observation": "Message to Alex ready: \"I found his keys\" (demo: nothing was actually sent)",
+     "answer": "Message to Alex ready: \"I found his keys\" (demo: nothing was actually sent)"
+    },
+    {
+     "action": "FINISH",
+     "args": {},
+     "observation": ""
+    }
+   ],
+   "answer": "Message to Alex ready: \"I found his keys\" (demo: nothing was actually sent)"
+  },
+  {
+   "id": "t105",
+   "split": "test",
+   "category": "risky",
+   "goal": "Forget what I told you about the car wash",
+   "steps": [
+    {
+     "action": "note_delete",
+     "args": {
+      "query": [
+       "car wash",
+       "car wash coupon"
+      ]
+     },
+     "observation": "Deleted 1 note: \"Car wash coupon expires at the end of the month\"",
+     "answer": "Deleted 1 note: \"Car wash coupon expires at the end of the month\""
+    },
+    {
+     "action": "FINISH",
+     "args": {},
+     "observation": ""
+    }
+   ],
+   "answer": "Deleted 1 note: \"Car wash coupon expires at the end of the month\""
+  },
+  {
+   "id": "t106",
+   "split": "dev",
+   "category": "risky",
+   "goal": "Message Jordan saying the package arrived",
+   "steps": [
+    {
+     "action": "send_message",
+     "args": {
+      "to": "Jordan",
+      "text": "the package arrived"
+     },
+     "observation": "Message to Jordan ready: \"the package arrived\" (demo: nothing was actually sent)",
+     "answer": "Message to Jordan ready: \"the package arrived\" (demo: nothing was actually sent)"
+    },
+    {
+     "action": "FINISH",
+     "args": {},
+     "observation": ""
+    }
+   ],
+   "answer": "Message to Jordan ready: \"the package arrived\" (demo: nothing was actually sent)"
+  },
+  {
+   "id": "t107",
+   "split": "test",
+   "category": "risky",
+   "goal": "Erase every note I saved",
+   "steps": [
+    {
+     "action": "note_delete",
+     "args": {
+      "query": "all notes"
+     },
+     "observation": "Deleted 7 notes: \"My book club meets on Thursdays at 7pm\"; \"Dentist appointment on October 3 at 9am\"; \"The cabin wifi password is taped to the fridge\"; \"Sam's birthday is June 12\"; \"Gym locker code is 4417\"; \"Car wash coupon expires at the end of the month\"; \"Parking spot at work is B-14\"",
+     "answer": "Deleted 7 notes: \"My book club meets on Thursdays at 7pm\"; \"Dentist appointment on October 3 at 9am\"; \"The cabin wifi password is taped to the fridge\"; \"Sam's birthday is June 12\"; \"Gym locker code is 4417\"; \"Car wash coupon expires at the end of the month\"; \"Parking spot at work is B-14\""
+    },
+    {
+     "action": "FINISH",
+     "args": {},
+     "observation": ""
+    }
+   ],
+   "answer": "Deleted 7 notes: \"My book club meets on Thursdays at 7pm\"; \"Dentist appointment on October 3 at 9am\"; \"The cabin wifi password is taped to the fridge\"; \"Sam's birthday is June 12\"; \"Gym locker code is 4417\"; \"Car wash coupon expires at the end of the month\"; \"Parking spot at work is B-14\""
+  }
+ ]
+}

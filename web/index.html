@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>layaAgent</title>
+<meta name="description" content="A browser-native AI agent: the 421M Laya encoder (System 1) makes the routine decisions, a small in-browser LLM (System 2) steps in only when Laya is unsure, and steps that change something need your OK. Nothing leaves the page.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%232a5bd7'/%3E%3Cpath d='M16 6l8 10-8 10-8-10z' fill='none' stroke='white' stroke-width='2.6' stroke-linejoin='round'/%3E%3Ccircle cx='16' cy='16' r='2.6' fill='white'/%3E%3C/svg%3E">
+<script src="./coi.js"></script>
+<link rel="stylesheet" href="./styles.css">
+<script src="./vendor/cytoscape.min.js"></script>
+<script src="./vendor/cytoscape-dagre.min.js"></script>
+</head>
+<body>
+<header class="top">
+  <div class="brand">
+    <svg viewBox="0 0 32 32" width="28" height="28" aria-hidden="true"><rect width="32" height="32" rx="7" class="logo-bg"/><path d="M16 6l8 10-8 10-8-10z" fill="none" stroke="#fff" stroke-width="2.6" stroke-linejoin="round"/><circle cx="16" cy="16" r="2.6" fill="#fff"/></svg>
+    <div>
+      <h1>layaAgent</h1>
+      <p>A 421M encoder makes the fast decisions, an in-browser LLM steps in when it is unsure, and you approve anything that changes something</p>
+    </div>
+  </div>
+  <div class="topright">
+    <nav class="nav" aria-label="Pages"><a href="./index.html" aria-current="page">Agent</a><a href="./eval.html">Evaluate</a></nav>
+    <div class="modelpill" id="modelPill" role="status"><span class="dot"></span><span id="modelPillText">Starting…</span></div>
+  </div>
+</header>
+
+<section class="card modelcard" id="modelCard">
+  <div class="modelgrid">
+    <div>
+      <h3><span class="sys s1">System 1</span> Laya typed-decision encoder (421M)</h3>
+      <div class="modelrow">
+        <div class="field"><label for="variant">Build</label><select id="variant"><option>Reading manifest…</option></select></div>
+        <div class="field"><label for="backend">Backend</label>
+          <select id="backend"><option value="auto">Auto (WebGPU for int4, else WASM)</option><option value="wasm">WASM (CPU)</option><option value="webgpu">WebGPU (int4 build only)</option></select></div>
+        <button id="loadBtn" class="primary" disabled>Load System 1</button>
+      </div>
+    </div>
+    <div>
+      <h3><span class="sys s2">System 2</span> small LLM via WebLLM</h3>
+      <div class="modelrow">
+        <div class="field"><label for="s2Model">Model</label><select id="s2Model"></select></div>
+        <button id="s2LoadBtn" disabled>Load System 2</button>
+      </div>
+      <p class="hint" id="s2Note"></p>
+    </div>
+  </div>
+  <div class="progress" id="progress" hidden><div id="progressBar"></div></div>
+  <p class="status" id="status">System 1: <a id="modelLink" target="_blank" rel="noopener"></a>, streamed from Hugging Face and cached by your browser. Until you load it, the preset goals replay runs recorded from the same models.</p>
+  <div class="badges" id="badges"></div>
+</section>
+
+<section class="banner">
+  <div class="card">
+    <h2>Who decided each step <span class="hint" id="bannerScope" style="font-weight:400"></span></h2>
+    <div class="splitrows" id="splitRows"></div>
+    <div class="bannerfoot" id="bannerFoot"></div>
+  </div>
+  <div class="card evalbox" id="evalBox">
+    <h2>On the labeled task suite <span class="hint" style="font-weight:400">(<a href="./eval.html">Evaluate</a>, test split, at the gate set below)</span></h2>
+    <div id="evalSummary" class="hint">No recorded evaluation yet.</div>
+  </div>
+</section>
+
+<div class="layout">
+  <aside class="side">
+    <section class="card">
+      <div class="field">
+        <label for="goal">Goal</label>
+        <textarea id="goal" rows="3" spellcheck="false" placeholder="What's the weather this weekend in the city where the Eiffel Tower is?"></textarea>
+      </div>
+      <label>Preset goals <span class="hint" id="presetHint"></span></label>
+      <div class="examples" id="presets"></div>
+      <div class="btnrow">
+        <button id="runBtn" class="primary">Run agent</button>
+        <button id="stopBtn" disabled>Stop</button>
+      </div>
+      <p class="hint" id="runHint"></p>
+    </section>
+
+    <section class="card">
+      <h2>The gate</h2>
+      <div class="field">
+        <label for="tauAction">Laya's score needed to run the action itself: <b id="tauActionVal"></b></label>
+        <input type="range" id="tauAction" min="0" max="1" step="0.01">
+      </div>
+      <div class="field">
+        <label for="tauArg">Score needed on every argument: <b id="tauArgVal"></b></label>
+        <input type="range" id="tauArg" min="0" max="1" step="0.01">
+      </div>
+      <div class="field"><label for="tauStop">p(goal met) needed to stop without asking: <b id="tauStopVal"></b></label><input type="range" id="tauStop" min="0.5" max="1" step="0.01"></div>
+      <p class="hint">Below any bar the step is <b>held</b>: System 2 decides, or you do if it is not loaded. Moving a slider re-routes the current run and the suite numbers instantly, with no model call.</p>
+      <details>
+        <summary>More gate settings</summary>
+        <div class="field" style="margin-top:8px"><label for="metric">Score</label><select id="metric"></select></div>
+        <div class="toggles">
+          <label class="check"><input type="checkbox" id="useGoalMet"> Stop when Laya says the goal is met (p ≥ 0.5); hold if it disagrees with its own next action</label>
+          <label class="check"><input type="checkbox" id="useRisk"> Hold read-only steps when Laya reads the goal as risky (p ≥ 0.5)</label>
+        </div>
+        <div class="field"><label for="maxSteps">Step budget</label><select id="maxSteps"><option>4</option><option>6</option><option selected>8</option><option>12</option></select></div>
+        <p class="hint">Tools that change something (save or delete notes, send a message) always ask you first, whoever picked them.</p>
+      </details>
+      <details>
+        <summary>System 2 options</summary>
+        <div class="toggles" style="margin-top:8px">
+          <label class="check"><input type="checkbox" id="autoS2"> Load System 2 on the first held step (else you decide)</label>
+          <label class="check"><input type="checkbox" id="shadow"> Shadow mode: also ask System 2 on 10% of System 1's automatic steps and record agreement</label>
+          <label class="check"><input type="checkbox" id="rewrite"> Let System 2 rewrite the final answer into a sentence</label>
+        </div>
+      </details>
+    </section>
+
+    <section class="card">
+      <h2>Agent memory <span class="hint" id="noteCount" style="font-weight:400"></span></h2>
+      <p class="hint">Notes live in this browser's IndexedDB. The agent saves, searches and deletes them with its note tools.</p>
+      <ul class="notes" id="notesList"></ul>
+      <div class="btnrow"><button id="seedNotes" class="ghost">Add example notes</button><button id="clearNotes" class="ghost">Clear notes</button></div>
+    </section>
+  </aside>
+
+  <main class="main">
+    <section class="card" id="answerCard" hidden><div id="answer"></div></section>
+    <section class="card stage">
+      <div class="tabs" role="tablist">
+        <button role="tab" aria-selected="true" data-tab="trace">Trace graph</button>
+        <button role="tab" aria-selected="false" data-tab="steps">Steps</button>
+        <button role="tab" aria-selected="false" data-tab="session">Session graph</button>
+        <button role="tab" aria-selected="false" data-tab="export">Export</button>
+      </div>
+      <div class="panel" data-panel="trace">
+        <div class="toolbar">
+          <div class="legend">
+            <span><i class="lg s1"></i>System 1 decided</span><span><i class="lg s2"></i>System 2 decided</span><span><i class="lg hu"></i>you decided</span>
+            <span><i class="lg esc"></i>held (escalated)</span><span><i class="lg guard"></i>needed your OK</span><span><i class="lg task"></i>tool call</span>
+          </div>
+          <div class="tools"><button id="fitBtn" class="ghost">Fit</button></div>
+        </div>
+        <div class="split">
+          <div class="canvas" id="traceCanvas"><div class="empty" id="traceEmpty">Pick a preset goal or write your own, then press <b>Run agent</b>.</div></div>
+          <div class="inspector" id="inspector"><p class="hint">Click a node: the typed questions Laya answered, every option's probability, the gate's reasons and, for held steps, System 2's prompt and reply. Dashed diamonds are the next actions Laya considered; click one to replay the run from there.</p></div>
+        </div>
+      </div>
+      <div class="panel" data-panel="steps" hidden><ol class="steplist" id="stepList"></ol></div>
+      <div class="panel" data-panel="session" hidden>
+        <p class="caption" style="margin-bottom:8px">Every run in this tab (recorded playbacks included), merged: edges are counted transitions, the amber halo marks tools where steps were often held for System 2 or you.</p>
+        <div class="canvas" id="sessionCanvas"><div class="empty" id="sessionEmpty">No runs yet.</div></div>
+      </div>
+      <div class="panel" data-panel="export" hidden>
+        <p class="hint">The current run as JSON (every step with Laya's answers) or as RDF Turtle (a <code>la:Run</code> with <code>la:Step</code>s and a <code>la:decidedBy</code> for each), to query elsewhere with SPARQL.</p>
+        <div class="btnrow"><button id="expJson">Download JSON</button><button id="expTtl">Download Turtle</button><button id="expAll">All runs in this tab (JSON)</button></div>
+        <pre id="expPreview" style="white-space:pre-wrap;margin-top:10px"></pre>
+      </div>
+    </section>
+  </main>
+</div>
+
+<dialog id="decideDlg">
+  <form method="dialog" id="decideForm">
+    <h3>Laya is not sure: you decide this step</h3>
+    <ul class="why" id="decideWhy"></ul>
+    <div class="field"><label for="decAction">Next action (Laya's top picks are listed first)</label><select id="decAction"></select></div>
+    <div id="decArgs"></div>
+    <div class="btnrow end"><button value="stop" formnovalidate>Stop the run</button><button value="ok" class="primary">Run this step</button></div>
+  </form>
+</dialog>
+<dialog id="confirmDlg">
+  <form method="dialog">
+    <h3>Allow this step?</h3>
+    <div class="guardtxt" id="confirmTxt"></div>
+    <p class="hint" id="confirmWho"></p>
+    <div class="btnrow end"><button value="no">Refuse</button><button value="yes" class="primary">Allow</button></div>
+  </form>
+</dialog>
+<dialog id="askDlg">
+  <form method="dialog">
+    <h3>The agent has a question</h3>
+    <p id="askQ"></p>
+    <div class="field"><input type="text" id="askA" autocomplete="off"></div>
+    <div class="btnrow end"><button value="skip" formnovalidate>Skip</button><button value="ok" class="primary">Answer</button></div>
+  </form>
+</dialog>
+
+<footer class="foot">
+  layaAgent · Apache-2.0 · System 1: <a href="https://huggingface.co/VishalMysore/layaForWebTrained" target="_blank" rel="noopener">Laya typed-decisions (browser build)</a>, derived from <a href="https://huggingface.co/convaiinnovations/laya-typed-decisions" target="_blank" rel="noopener">ConvAI Innovations' Laya</a>. System 2: <a href="https://github.com/mlc-ai/web-llm" target="_blank" rel="noopener">WebLLM</a> models, under their own licenses. Tools call Wikipedia, Wikidata and Open-Meteo directly from your browser; nothing else leaves the page, and messages are never actually sent. <a href="./NOTICE.txt">Notices</a>.
+</footer>
+<script type="module" src="./main.js"></script>
+</body>
+</html>

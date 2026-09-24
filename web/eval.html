@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>layaAgent · Evaluate</title>
+<meta name="description" content="Evaluate layaAgent on a labeled task suite: how many steps the Laya encoder handles alone, how often those automatic steps are wrong, and hybrid vs System 1 only vs System 2 only.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%232a5bd7'/%3E%3Cpath d='M16 6l8 10-8 10-8-10z' fill='none' stroke='white' stroke-width='2.6' stroke-linejoin='round'/%3E%3Ccircle cx='16' cy='16' r='2.6' fill='white'/%3E%3C/svg%3E">
+<script src="./coi.js"></script>
+<link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+<header class="top">
+  <div class="brand">
+    <svg viewBox="0 0 32 32" width="28" height="28" aria-hidden="true"><rect width="32" height="32" rx="7" class="logo-bg"/><path d="M16 6l8 10-8 10-8-10z" fill="none" stroke="#fff" stroke-width="2.6" stroke-linejoin="round"/><circle cx="16" cy="16" r="2.6" fill="#fff"/></svg>
+    <div>
+      <h1>layaAgent · Evaluate</h1>
+      <p>How much of the agent's work does the encoder handle, and how often is it wrong when it does?</p>
+    </div>
+  </div>
+  <div class="topright">
+    <nav class="nav" aria-label="Pages"><a href="./index.html">Agent</a><a href="./eval.html" aria-current="page">Evaluate</a></nav>
+    <div class="modelpill" id="modelPill" role="status"><span class="dot"></span><span id="modelPillText">Starting…</span></div>
+  </div>
+</header>
+
+<section class="card modelcard">
+  <div class="modelgrid">
+    <div>
+      <h3><span class="sys s1">System 1</span> Laya typed-decision encoder (421M)</h3>
+      <div class="modelrow">
+        <div class="field"><label for="variant">Build</label><select id="variant"><option>Reading manifest…</option></select></div>
+        <div class="field"><label for="backend">Backend</label>
+          <select id="backend"><option value="auto">Auto (WebGPU for int4, else WASM)</option><option value="wasm">WASM (CPU)</option><option value="webgpu">WebGPU (int4 build only)</option></select></div>
+        <button id="loadBtn" class="primary" disabled>Load System 1</button>
+      </div>
+    </div>
+    <div>
+      <h3><span class="sys s2">System 2</span> small LLM via WebLLM</h3>
+      <div class="modelrow">
+        <div class="field"><label for="s2Model">Model</label><select id="s2Model"></select></div>
+        <button id="s2LoadBtn" disabled>Load System 2</button>
+      </div>
+      <p class="hint" id="s2Note"></p>
+    </div>
+  </div>
+  <div class="progress" id="progress" hidden><div id="progressBar"></div></div>
+  <p class="status" id="status">System 1: <a id="modelLink" target="_blank" rel="noopener"></a>. Until you run the suite yourself, this page shows a run recorded from the same models.</p>
+  <div class="badges" id="badges"></div>
+</section>
+
+<div class="layout">
+  <aside class="side">
+    <section class="card">
+      <h2>Run the task suite</h2>
+      <p class="hint" id="suiteInfo"></p>
+      <div class="row2" style="margin-top:8px">
+        <div class="field"><label for="subset">Tasks</label><select id="subset"><option value="dev">Dev split</option><option value="test">Test split</option><option value="all" selected>All</option><option value="quick">Quick (1 per category)</option></select></div>
+        <div class="field"><label>&nbsp;</label><label class="check"><input type="checkbox" id="withS2"> Also run System 2 on every step</label></div>
+      </div>
+      <div class="runbar"><button id="runBtn" class="primary">Run</button><button id="stopBtn" disabled>Stop</button><div class="progress"><div id="runBar" style="height:100%;width:0;background:var(--accent)"></div></div><span class="count" id="runCount"></span></div>
+      <p class="hint">Each gold step is run with the gold history as context, with tool outputs recorded when the suite was built, so scores do not move with the live APIs. Everything below is recomputed from the stored answers when a setting changes.</p>
+      <div class="field" style="margin-top:10px"><label for="runSel">Showing</label><div class="runsel"><select id="runSel"></select><button id="dlRun" class="ghost">Download</button></div></div>
+    </section>
+
+    <section class="card">
+      <h2>The gate</h2>
+      <div class="field"><label for="tauAction">Score needed on the action: <b id="tauActionVal"></b></label><input type="range" id="tauAction" min="0" max="1" step="0.01"></div>
+      <div class="field"><label for="tauArg">Score needed on every argument: <b id="tauArgVal"></b></label><input type="range" id="tauArg" min="0" max="1" step="0.01"></div>
+      <div class="field"><label for="tauStop">p(goal met) needed to stop without asking: <b id="tauStopVal"></b></label><input type="range" id="tauStop" min="0.5" max="1" step="0.01"></div>
+      <div class="field"><label for="metric">Score</label><select id="metric"></select></div>
+      <div class="toggles">
+        <label class="check"><input type="checkbox" id="useGoalMet"> Use Laya's "goal met" to stop (and hold on disagreement)</label>
+        <label class="check"><input type="checkbox" id="useRisk"> Hold read-only steps when Laya reads the goal as risky</label>
+      </div>
+      <div class="minirow"><button id="tuneBtn">Tune on dev</button><div class="field"><label for="maxErr" style="display:inline">max auto-step error</label> <select id="maxErr" style="width:auto"><option value="0.05">5%</option><option value="0.1" selected>10%</option><option value="0.15">15%</option><option value="0.2">20%</option></select></div></div>
+      <p class="hint" id="tuneMsg">Picks the threshold (same for action and arguments) with the largest System 1 share on the dev split whose automatic steps stay under the error cap; read the result on the test split.</p>
+      <div class="field" style="margin-top:10px"><label for="scoreSplit">Score on</label><select id="scoreSplit"><option value="test" selected>Test split</option><option value="dev">Dev split</option><option value="all">All tasks</option></select></div>
+    </section>
+  </aside>
+
+  <main class="main">
+    <section class="card">
+      <h2>Headline at this gate</h2>
+      <div class="kpis" id="kpis"></div>
+      <p class="hint" id="kpiNote"></p>
+    </section>
+    <div class="two">
+      <section class="card">
+        <h2>Baselines</h2>
+        <div class="tablewrap"><table class="grid" id="baselines"></table></div>
+        <p class="hint">Task success = every step of the task decided correctly (with recorded tools, that is exactly when the agent reaches the gold answer). "You" is a person answering held steps, assumed correct: its cost is the share of steps you have to decide.</p>
+      </section>
+      <section class="card">
+        <h2>Coverage vs accuracy</h2>
+        <div id="curve"></div>
+        <p class="hint">Each point is one threshold (applied to action and arguments). Right = more steps handled by System 1 alone; up = those automatic steps are right more often. Click a point to use its threshold.</p>
+      </section>
+    </div>
+    <div class="two">
+      <section class="card">
+        <h2>System 1's parts</h2>
+        <div class="tablewrap"><table class="grid" id="parts"></table></div>
+      </section>
+      <section class="card">
+        <h2>By category</h2>
+        <div class="tablewrap"><table class="grid" id="cats"></table></div>
+      </section>
+    </div>
+    <section class="card">
+      <h2>Every step</h2>
+      <div class="filters">
+        <select id="fCat"><option value="">All categories</option></select>
+        <select id="fRoute"><option value="">AUTO and HOLD</option><option value="AUTO">AUTO only</option><option value="HOLD">HOLD only</option></select>
+        <select id="fOk"><option value="">Right and wrong</option><option value="bad">System 1 wrong</option><option value="autobad">Automatic and wrong</option></select>
+      </div>
+      <div class="tablewrap"><table class="grid" id="steps"></table></div>
+    </section>
+  </main>
+</div>
+<footer class="foot">
+  layaAgent · Apache-2.0 · The task suite is synthetic (<code>tasks.json</code>): goals, notes and names are made up, tool outputs were recorded from Wikipedia, Wikidata and Open-Meteo when the suite was built. <a href="./NOTICE.txt">Notices</a>.
+</footer>
+<script type="module" src="./eval.js"></script>
+</body>
+</html>
