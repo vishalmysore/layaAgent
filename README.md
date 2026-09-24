@@ -4,7 +4,7 @@
 
 No server, no API key. The tools call Wikipedia, Wikidata and Open-Meteo straight from your browser; nothing else leaves the page, and messages are simulated, never sent.
 
-**Live demo:** https://vishalmysore.github.io/layaAgent/ · Design spec: [`layaAgent.md`](layaAgent.md). Fourth in the series layaForWeb (the model) → [layaForWorkflows](https://github.com/vishalmysore/layaForWorkflows) (decisions as a graph) → [layaAsRagJudge](https://github.com/vishalmysore/layaAsRagJudge) (decisions as a judge) → **layaAgent (decisions as an agent)**.
+**Live demo:** https://vishalmysore.github.io/layaAgent/ · **Article:** [A 421M encoder beat a 1.5B LLM at running my agent, inside a browser tab](docs/article.md) · Design spec: [`layaAgent.md`](layaAgent.md). Fourth in the series layaForWeb (the model) → [layaForWorkflows](https://github.com/vishalmysore/layaForWorkflows) (decisions as a graph) → [layaAsRagJudge](https://github.com/vishalmysore/layaAsRagJudge) (decisions as a judge) → **layaAgent (decisions as an agent)**.
 
 
 ## Results (test split: 71 tasks, 158 steps)
