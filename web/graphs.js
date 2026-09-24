@@ -42,8 +42,11 @@ function baseStyle(P) {
 /** Route of a step at the CURRENT gate (may differ from how it was decided, when a slider moved). */
 function stepLabel(s, rerouted) {
   const who = s.decidedBy === "S1" ? "S1" : s.decidedBy === "S2" ? "S2" : s.decidedBy === "human" ? "you" : s.decidedBy;
+  // a FINISH from System 1 comes from its "goal met" question, so show that probability, not the FINISH option's
+  const gm = s.action === FINISH ? s.s1?.answers?.goal_met?.noul : null;
   const p = s.s1?.answers?.next_action?.probabilities?.[s.action];
-  return `#${s.index + 1} ${s.action || "stop"}\n${who}${p != null && s.decidedBy === "S1" ? ` · p ${p.toFixed(2)}` : ""}${rerouted ? `\nnow: ${rerouted}` : ""}`;
+  const score = s.decidedBy !== "S1" ? "" : gm != null ? ` · goal met ${gm.toFixed(2)}` : p != null ? ` · p ${p.toFixed(2)}` : "";
+  return `#${s.index + 1} ${s.action || "stop"}\n${who}${score}${rerouted ? `\nnow: ${rerouted}` : ""}`;
 }
 
 export function traceElements(run, opts = {}) {
@@ -180,7 +183,8 @@ export function renderSession(container, runs, onSelect) {
 }
 
 function runLayout(cy, opts) {
-  const fit = () => { if (cy.destroyed()) return; cy.resize(); cy.fit(undefined, 18); };
+  // fit, but never blow a one- or two-node graph up past natural size
+  const fit = () => { if (cy.destroyed()) return; cy.resize(); cy.fit(undefined, 18); if (cy.zoom() > 1.1) { cy.zoom(1.1); cy.center(); } };
   cy.one("layoutstop", () => requestAnimationFrame(fit));
   cy.layout({ padding: 16, fit: true, ...opts }).run();
 }

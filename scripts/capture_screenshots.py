@@ -41,7 +41,7 @@ def play(page, goal):
     page.evaluate("(g) => [...document.querySelectorAll('#presets button')].find(b => b.dataset.goal === g).click()", goal)
     page.wait_for_function("() => window.__la.S.current && !window.__la.S.running && window.__la.S.current.outcome", polling=500, timeout=900_000)
     page.wait_for_timeout(900)
-    page.evaluate("() => window.__la.S.cy && window.__la.S.cy.fit(undefined, 18)")
+    page.evaluate("() => { const c = window.__la.S.cy; if (c) { c.fit(undefined, 18); if (c.zoom() > 1.1) { c.zoom(1.1); c.center(); } } }")
     page.wait_for_timeout(400)
 
 
@@ -76,6 +76,7 @@ with sync_playwright() as p:
         if held is not None:
             tap_node(page, f"d_{held}")
             shot(page, "03-inspector-held-step", "#inspector")
+        play(page, "What's 18% of 2,450?")
         tap_node(page, "d_0")
         shot(page, "04-inspector-laya-step", "#inspector")
         play(page, "Delete all my notes about the dentist")
@@ -136,7 +137,7 @@ with sync_playwright() as p:
                     break
                 page.wait_for_timeout(400)
             page.wait_for_timeout(800)
-            page.evaluate("() => window.__la.S.cy && window.__la.S.cy.fit(undefined, 18)")
+            page.evaluate("() => { const c = window.__la.S.cy; if (c) { c.fit(undefined, 18); if (c.zoom() > 1.1) { c.zoom(1.1); c.center(); } } }")
             shot(page, final_shot, ".main")
 
         run_live("What's 18% of 2,450?", "15-live-run")
